@@ -2,8 +2,8 @@ def merge_sort(list):
   """
   recursively sorts halved lists, merging the results at each level
 
-  input: unordered list containing comparable elements
-  output: ordered list
+  :param list list: unordered list containing comparable elements
+  :returns: ordered list
   """
   if len(list) < 2:
     return list
@@ -17,10 +17,11 @@ def merge_sort(list):
 
 def merge(a, b):
   """
-  steps through indexes in both input lists, appending the smaller val at each step
+  steps through indexes in both input lists, appending the smaller val to the output list at each step
 
-  input: two ordered lists
-  output: one ordered list combining the two input lists
+  :param list a: ordered list
+  :param list b: ordered list
+  :returns: ordered list combining the two input lists
   """
   i = 0
   j = 0
