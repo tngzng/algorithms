@@ -58,7 +58,6 @@ def merge_and_count_inversions(a, b, inversion_count):
       # increment inversion_count by num els remaining in a if a isn't exhausted
       try:
         a[i]
-        # inversion_count = len(a) - i
         remaining_in_a = len(a) - i
         inversion_count = inversion_count + remaining_in_a
       except IndexError:
