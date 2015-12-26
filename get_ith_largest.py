@@ -1,6 +1,13 @@
 import random
 
 def get_ith_largest(arr, i):
+    """
+    Get the ith largest element of a list by recursively partitioning the list and continuing to search in the half of the list where the ith largest element resides.
+
+    :param list arr: A list containing comparable elements.
+    :param int i: Represents the order statistic we are looking for.
+    :returns: The ith largest el of a list.
+    """
     if len(arr) == 1:
         return arr[0]
 
@@ -19,6 +26,12 @@ def get_ith_largest(arr, i):
         return get_ith_largest(new_arr, new_i)
 
 def partition(arr):
+    """
+    Partition a list by swapping elements when out of place in relation to a randomly selected pivot.
+
+    :param list arr: A list containing comparable elements.
+    :returns: A tuple containing the partitioned list and the index of a randomly selected pivot (it's correct index in the list).
+    """
     # select random el to use as pivot and move to start of arr
     rand_int = random.randint(0, len(arr) - 1)
     temp = arr[0]
@@ -42,5 +55,6 @@ def partition(arr):
 
     return (arr, new_pivot_location)
 
-arr = [ 1, 2, 9, 5, 4, 6, 7, 3, 0, 100, -100, 10000 ]
-print get_ith_largest(arr, 11) # expect 100
+# test:
+# arr = [ 1, 2, 9, 5, 4, 6, 7, 3, 0, 100, -100, 10000 ]
+# print get_ith_largest(arr, 11) # expect 100
