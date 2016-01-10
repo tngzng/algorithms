@@ -13,7 +13,7 @@ def random_contraction(g):
         rand = random.randrange(0, len(edges))
         (u,v) = edges.pop(rand)
         g[u] = g[u] + g[v] # contract u and v
-        g[u] = [adj for adj in g[u] if adj not in [u, v]] # remove self loops
+        g[u] = [adj for adj in g[u] if adj not in [u, v]] # remove self loops from nodes
         del g[v]
 
         # update occurrences of v to u
@@ -22,13 +22,16 @@ def random_contraction(g):
                 edge = tuple([node if node != v else u for node in edge])
                 edges[i] = edge
 
+        # remove self loops from edges
+        edges = [(x,y) for (x,y) in edges if x != y]
+
     return len(edges)
 
 def get_edgelist(g):
     edges = set([])
     for node in g:
         for adj in g[node]:
-            # sort to deduplicated
+            # sort to deduplicate
             sorted_tuple = tuple(sorted((node, adj)))
             edges.add(sorted_tuple)
 
@@ -39,27 +42,19 @@ def get_edgelist(g):
 # 'a'---'b'---'c'---'d'
 # |   X  |     |  X  |
 # 'e'---'f'---'g'---'h'
-g = {
-    'a': ['b','e','f'],
-    'b': ['a','e','f','c'],
-    'c': ['b','g','h','d'],
-    'd': ['c','g','h'],
-    'h': ['g','c','d'],
-    'g': ['f','c','d','h'],
-    'f': ['e','a','b','g'],
-    'e': ['a','b','f']
-}
 
-# model this graph:
-# 'a'---'b'
-# |   /  |
-# 'e'---'f'
-# g = {
-#     'a': ['e','b'],
-#     'b': ['a','e','f'],
-#     'f': ['b','e'],
-#     'e': ['a','b','f']
-# }
+res = []
+for i in range(0,10000):
+    g = {
+        'a': ['b','e','f'],
+        'b': ['a','e','f','c'],
+        'c': ['b','g','h','d'],
+        'd': ['c','g','h'],
+        'h': ['g','c','d'],
+        'g': ['f','c','d','h'],
+        'f': ['e','a','b','g'],
+        'e': ['a','b','f']
+    }
+    res.append(random_contraction(g))
 
-for i in range(0,1000):
-    print random_contraction(g)
+print res
