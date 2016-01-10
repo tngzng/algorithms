@@ -4,7 +4,7 @@ def random_contraction(g):
     """
     Return a potential minimum cut from a graph.
 
-    :param dict g: graph we are contracting represented as an edgelist.
+    :param dict g: graph we are contracting represented as an adjacency list.
     :returns: int representing a potential min cut.
     """
     edges = get_edgelist(g)
@@ -28,6 +28,12 @@ def random_contraction(g):
     return len(edges)
 
 def get_edgelist(g):
+    """
+    Return a list of edges from a graph represented as an adjacency list.
+
+    :param dict g: graph represented as an adjacency list.
+    :returns: list of tuples.
+    """
     edges = set([])
     for node in g:
         for adj in g[node]:
