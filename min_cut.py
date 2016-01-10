@@ -1,4 +1,25 @@
 import random
+import math
+import sys
+
+def min_cut(g):
+    """
+    Return a min cut with probability of failure 1/n.
+
+    :param dict g: graph represented as an adjacency list.
+    :returns: int representing min cut.
+    """
+    n = len(g)
+    # repeat n choose 2 * ln n times
+    runs = int((n * (n - 1) / 2) * math.log(n))
+    min = sys.maxint
+    for i in range(0, runs):
+        temp_g = g
+        res = random_contraction(temp_g)
+        if res < min:
+            min = res
+
+    return min
 
 def random_contraction(g):
     """
@@ -49,18 +70,15 @@ def get_edgelist(g):
 # |   X  |     |  X  |
 # 'e'---'f'---'g'---'h'
 
-res = []
-for i in range(0,10000):
-    g = {
-        'a': ['b','e','f'],
-        'b': ['a','e','f','c'],
-        'c': ['b','g','h','d'],
-        'd': ['c','g','h'],
-        'h': ['g','c','d'],
-        'g': ['f','c','d','h'],
-        'f': ['e','a','b','g'],
-        'e': ['a','b','f']
-    }
-    res.append(random_contraction(g))
+g = {
+    'a': ['b','e','f'],
+    'b': ['a','e','f','c'],
+    'c': ['b','g','h','d'],
+    'd': ['c','g','h'],
+    'h': ['g','c','d'],
+    'g': ['f','c','d','h'],
+    'f': ['e','a','b','g'],
+    'e': ['a','b','f']
+}
 
-print res
+print min_cut(g)
