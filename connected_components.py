@@ -1,3 +1,5 @@
+from collections import deque
+
 def get_connected_components(g):
     """
     Return an array of arrays, each representing a connected component.
@@ -15,22 +17,33 @@ def get_connected_components(g):
     return connected_components
 
 def bfs(g, node, explored):
-    pass
+    q = deque([node])
+    connected_component = [node]
+    explored.add(node)
+    while q:
+        node = q.popleft()
+        for adj_node in g[node]:
+            if adj_node not in explored:
+                explored.add(adj_node)
+                connected_component.append(adj_node)
+                q.append(adj_node)
+    return connected_component
 
 # model this graph:
-# 1---2   3---4
+# 1---2   3---4   9
 # | X |   | X |
 # 5---6   7---8
 
 g = {
     1: [2,5,6],
     2: [1,5,6],
+    6: [5,1,2],
+    5: [1,2,6],
     3: [7,8,4],
     4: [3,7,8],
     8: [7,3,4],
     7: [3,4,8],
-    6: [5,1,2],
-    5: [1,2,6]
+    9: []
 }
 
 print get_connected_components(g)
