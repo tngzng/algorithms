@@ -12,11 +12,19 @@ def get_connected_components(g):
     node_count = len(g)
     for i in xrange(1, node_count + 1):
         if i not in explored:
-            connected_component = bfs(g, i, explored)
+            connected_component = find_connected_component(g, i, explored)
             connected_components.append(connected_component)
     return connected_components
 
-def bfs(g, node, explored):
+def find_connected_component(g, node, explored):
+    """
+    Breadth first search implementation that returns a connected component for a given starting node.
+
+    :param dict g: graph represented as an adjacency list.
+    :param int node: a node label representing the starting node, can also be a string or another hashable type.
+    :param set explored: the nodes that have already been searched.
+    :returns: an array, representing the connected component for the given starting node.
+    """
     q = deque([node])
     connected_component = [node]
     explored.add(node)
