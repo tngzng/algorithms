@@ -18,7 +18,7 @@ def reverse_graph(graph):
 
 def strongly_connected_components(graph):
     """
-    Given a directed graph, find all the strongly strongly connected components. A strongly connected component is a collection of nodes in a graph where each node is reachable from every other node.
+    Given a directed graph, return an array of its strongly connected components. A strongly connected component is a collection of nodes where each node is reachable from every other node.
 
     This implementation assumes the inputted graph is an adjacency list of nodes.
     """
