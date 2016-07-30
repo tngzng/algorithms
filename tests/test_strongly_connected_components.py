@@ -5,6 +5,14 @@ import unittest
 import strongly_connected_components as scc
 
 class TestStronglyConnectedComponents(unittest.TestCase):
+    def setUp(self):
+        # reset global variables in strongly_connected_components
+        scc.finishing_time = 1
+        scc.finishing_order = []
+        scc.explored = set([])
+        scc.source_node = None
+        scc.components = {}
+
     def test_reverse_graph(self):
         # input graph:
         # 1-->2-->3
