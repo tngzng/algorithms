@@ -1,7 +1,8 @@
 finishing_time = 1
-finishing_times = {}
+finishing_order = []
 explored = set([])
 source_node = None
+components = {}
 
 def reverse_graph(graph):
     reversed_graph = {}
@@ -21,28 +22,44 @@ def strongly_connected_components(graph):
 
     This implementation assumes the inputted graph is an adjacency list of nodes.
     """
-    reversed_graph = reverse_graph(graph)
+    global explored
+    global source_node
 
+    reversed_graph = reverse_graph(graph)
     for node in reversed_graph:
         if node not in explored:
             dfs(reversed_graph, node)
 
-    # 3. run dfs on original graph
-        # processing nodes in decreasing order of finish time
-    return [[1, 2, 5, 6], [3, 4, 8, 7]]
+    explored = set([])
+    for node in reversed(finishing_order):
+        if node not in explored:
+            source_node = node
+            dfs(graph, node)
+
+    res = []
+    for source_node in components:
+        res.append(components[source_node])
+    return res
 
 def dfs(graph, node):
     """
-    Depth first search that updates the global variable finishing_times with order each node finished processing.
+    Depth first search that:
+    1. Updates the global variable finishing_order with order each node finished processing.
+    2. Updates the global variable components, associating each node with the source node it was originally called from.
     """
     global explored
-    global finishing_times
+    global finishing_order
     global finishing_time
+    global components
 
     explored.add(node)
+    try:
+        components[source_node].append(node)
+    except KeyError:
+        components[source_node] = [node]
     for adj_node in graph[node]:
         if adj_node not in explored:
             dfs(graph, adj_node)
 
-    finishing_times[node] = finishing_time
+    finishing_order.append(node)
     finishing_time += 1

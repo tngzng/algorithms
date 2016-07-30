@@ -44,14 +44,8 @@ class TestStronglyConnectedComponents(unittest.TestCase):
             4: [],
         }
         scc.dfs(graph, 1)
-        expected_order = {
-            1: 4,
-            2: 3,
-            3: 2,
-            4: 1,
-        }
-        for node in scc.finishing_times:
-            assert scc.finishing_times[node] is expected_order[node]
+        expected_order = [4, 3, 2, 1]
+        self.assertEqual(scc.finishing_order, expected_order)
 
     def test_strongly_connected_components(self):
         # input graph:
