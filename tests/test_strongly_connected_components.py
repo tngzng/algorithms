@@ -34,6 +34,25 @@ class TestStronglyConnectedComponents(unittest.TestCase):
         for node in reversed_graph:
             self.assertListEqual(reversed_graph[node], expected_graph[node])
 
+    def test_dfs_updates_finishing_times(self):
+        # input graph:
+        # 1-->2-->3-->4
+        graph = {
+            1: [2],
+            2: [3],
+            3: [4],
+            4: [],
+        }
+        scc.dfs(graph, 1)
+        expected_order = {
+            1: 4,
+            2: 3,
+            3: 2,
+            4: 1,
+        }
+        for node in scc.finishing_times:
+            assert scc.finishing_times[node] is expected_order[node]
+
     def test_strongly_connected_components(self):
         # input graph:
         # 1-->2-->3<--4
