@@ -1,10 +1,10 @@
 class StronglyConnectedComponents(object):
     def __init__(self):
-        self.finishing_time = 1
-        self.finishing_order = []
         self.reset_dfs_vars()
 
     def reset_dfs_vars(self):
+        self.finishing_time = 1
+        self.finishing_order = []
         self.explored = set([])
         self.source_node = None
         self.components = {}
@@ -31,16 +31,16 @@ class StronglyConnectedComponents(object):
         for node in reversed_graph:
             if node not in self.explored:
                 self.dfs(reversed_graph, node)
-
+        reversed_order = reversed(self.finishing_order)
         self.reset_dfs_vars()
-        for node in reversed(self.finishing_order):
+
+        for node in reversed_order:
             if node not in self.explored:
                 self.source_node = node
                 self.dfs(graph, node)
 
-        res = []
-        for source_node in self.components:
-            res.append(self.components[source_node])
+        res = self.components.values()
+        self.reset_dfs_vars()
         return res
 
     def dfs(self, graph, node):
