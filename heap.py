@@ -1,13 +1,38 @@
 class Heap(object):
+    """
+    This is a heap implementation that uses an array. Since a heap is an as-complete-as-possible binary tree, the parent and children of any given key in the heap can be found by simple arithmetic. For example, let's say we have the following heap:
+             1
+            / \
+           2   3
+          / \
+         4   5
+
+    We can represent the heap as the array:
+    [1, 2, 3, 4, 5]
+
+    The parent of key 5 can be found by taken the floor of the key's position divided by 2.
+    5 / 2 = 2
+
+    Similarly, the children of key 2 can be found by multiplying the key's position and adding 1.
+    2 * 2 = 4
+    2 * 2 + 1 = 5
+    """
     def __init__(self):
         self.heap = []
 
     def insert(self, key):
+        """
+        insert accepts a key and places it in a position that maintains the integrity of the heap.
+        (ie in a position where the key is greater than its parent.)
+        """
         self.heap.append(key)
         position = len(self.heap)
         self.bubble_up(key, position)
 
     def bubble_up(self, key, position):
+        """
+        bubble_up recursively swaps the inputted child key with it's parent, until it is greater than or equal to its parent.
+        """
         parent_position = self.parent_position(position)
         if not parent_position:
             return
@@ -18,6 +43,9 @@ class Heap(object):
             self.bubble_up(key, position)
 
     def extract_min(self):
+        """
+        extract_min returns the minimum key from the heap and reorders the remaining keys to maintain the integrity of the heap, so that any given child is less than it's parent.
+        """
         res = self.heap[0]
         self.heap[0] = self.heap.pop()
         position = 1
@@ -26,6 +54,9 @@ class Heap(object):
         return res
 
     def bubble_down(self, key, position):
+        """
+        bubble_down recursively swaps the inputted parent key with it's minimum child, until it is less than or equal to its minimum child.
+        """
         min_child_pos = self.min_child_position(position)
         if not min_child_pos:
             return
