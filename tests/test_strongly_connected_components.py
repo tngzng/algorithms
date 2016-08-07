@@ -101,6 +101,3 @@ class TestStronglyConnectedComponents(unittest.TestCase):
             component.sort()
         assert [1, 2, 5, 6] in res
         assert [3, 4, 7, 8] in res
-
-if __name__ == '__main__':
-    unittest.main()

@@ -43,6 +43,3 @@ class TestHeap(unittest.TestCase):
 
     def parent_position(self, position):
         return position / 2
-
-if __name__ == '__main__':
-    unittest.main()
