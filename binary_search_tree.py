@@ -2,6 +2,35 @@ class BinarySearchTree(object):
     def __init__(self):
         self.root = None
 
+    def min(self):
+        if not self.root:
+            return None
+
+        last_taversed_node = self.root
+        while last_taversed_node.left_child:
+            last_taversed_node = last_taversed_node.left_child
+
+        return last_taversed_node
+
+    def max(self):
+        if not self.root:
+            return None
+
+        last_taversed_node = self.root
+        while last_taversed_node.right_child:
+            last_taversed_node = last_taversed_node.right_child
+
+        return last_taversed_node
+
+    def prev(self, label):
+        pass
+
+    def next(self, label):
+        pass
+
+    def traverse_in_order(self):
+        pass
+
     def search(self, start_node, target_key):
         """
         returns a tuple representing (was_found, last_traversed_node)

@@ -24,3 +24,32 @@ class TestHeap(unittest.TestCase):
         right_child_right_child = bst.insert(7)
         self.assertEqual(bst.root.right_child.right_child, right_child_right_child)
 
+    def test_min(self):
+        """
+        test the min from the following binary search tree
+             3
+            /
+           2
+          /
+         1
+        """
+        bst = BinarySearchTree()
+        bst.insert(3)
+        bst.insert(2)
+        expected_min = bst.insert(1)
+        self.assertEqual(bst.min(), expected_min)
+
+    def test_max(self):
+        """
+        test the max from the following binary search tree
+         1
+          \
+           2
+            \
+             3
+        """
+        bst = BinarySearchTree()
+        bst.insert(1)
+        bst.insert(2)
+        expected_max = bst.insert(3)
+        self.assertEqual(bst.max(), expected_max)
