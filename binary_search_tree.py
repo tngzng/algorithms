@@ -55,7 +55,12 @@ class BinarySearchTree(object):
         return None # input node is the max
 
     def traverse_in_order(self):
-        pass
+        min_node = self.min()
+        if min_node:
+            next_node = min_node
+            while next_node:
+                yield next_node
+                next_node = self.next(next_node)
 
     def search(self, start_node, target_key):
         """

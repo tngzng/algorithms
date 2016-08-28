@@ -4,7 +4,7 @@ sys.path.append(os.path.abspath(os.path.dirname(__file__) + '../..'))
 import unittest
 from binary_search_tree import BinarySearchTree
 
-class TestHeap(unittest.TestCase):
+class TestBinarySearchTree(unittest.TestCase):
     def test_insert(self):
         """
         test the following binary search tree
@@ -160,3 +160,25 @@ class TestHeap(unittest.TestCase):
         bst.insert(2)
         node = bst.insert(3)
         self.assertEqual(bst.next(node), None)
+
+    def test_traverse_in_order(self):
+        """
+        test the following binary search tree
+              4
+             / \
+            /   \
+           2     6
+          / \   / \
+         1   3  5  7
+        """
+        bst = BinarySearchTree()
+        node_4 = bst.insert(4)
+        node_2 = bst.insert(2)
+        node_1 = bst.insert(1)
+        node_3 = bst.insert(3)
+        node_6 = bst.insert(6)
+        node_5 = bst.insert(5)
+        node_7 = bst.insert(7)
+        ordered_tree = bst.traverse_in_order()
+        expected = [node_1, node_2, node_3, node_4, node_5, node_6, node_7]
+        self.assertTrue(all(a == b for a, b in zip(ordered_tree, expected)))
