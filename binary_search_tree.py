@@ -2,30 +2,45 @@ class BinarySearchTree(object):
     def __init__(self):
         self.root = None
 
-    def min(self):
-        if not self.root:
-            return None
+    def min(self, start_node=None):
+        if not start_node:
+            start_node = self.root
+        if not start_node:
+            return None # empty tree
 
-        last_taversed_node = self.root
+        last_taversed_node = start_node
         while last_taversed_node.left_child:
             last_taversed_node = last_taversed_node.left_child
 
         return last_taversed_node
 
-    def max(self):
-        if not self.root:
-            return None
+    def max(self, start_node=None):
+        if not start_node:
+            start_node = self.root
+        if not start_node:
+            return None # empty tree
 
-        last_taversed_node = self.root
+        last_taversed_node = start_node
         while last_taversed_node.right_child:
             last_taversed_node = last_taversed_node.right_child
 
         return last_taversed_node
 
-    def prev(self, label):
-        pass
+    def prev(self, node):
+        # if node has left subtree, return max from that subtree
+        if node.left_child:
+            return self.max(start_node=node.left_child)
 
-    def next(self, label):
+        # traverse parents until a parent with a lower value is reached
+        next_node = node
+        while next_node:
+            if next_node.label < node.label:
+                return next_node
+            next_node = next_node.parent
+
+        return None # input node is the min
+
+    def next(self, node):
         pass
 
     def traverse_in_order(self):

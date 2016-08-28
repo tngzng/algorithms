@@ -26,7 +26,7 @@ class TestHeap(unittest.TestCase):
 
     def test_min(self):
         """
-        test the min from the following binary search tree
+        test the following binary search tree
              3
             /
            2
@@ -41,7 +41,7 @@ class TestHeap(unittest.TestCase):
 
     def test_max(self):
         """
-        test the max from the following binary search tree
+        test the following binary search tree
          1
           \
            2
@@ -53,3 +53,52 @@ class TestHeap(unittest.TestCase):
         bst.insert(2)
         expected_max = bst.insert(3)
         self.assertEqual(bst.max(), expected_max)
+
+    def test_prev_node_has_left_subtree(self):
+        """
+        test the following binary search tree
+             4 <-- get prev node of 4
+            /
+           2
+          / \
+         1   3
+        """
+        bst = BinarySearchTree()
+        node = bst.insert(4)
+        bst.insert(2)
+        bst.insert(1)
+        expected_prev = bst.insert(3)
+        self.assertEqual(bst.prev(node), expected_prev)
+
+    def test_prev_node_has_no_left_subtree(self):
+        """
+        test the following binary search tree
+             4
+            /
+           1
+            \
+             3
+            /
+           2 <-- get prev node of 2
+        """
+        bst = BinarySearchTree()
+        bst.insert(4)
+        expected_prev = bst.insert(1)
+        bst.insert(3)
+        node = bst.insert(2)
+        self.assertEqual(bst.prev(node), expected_prev)
+
+    def test_prev_node_of_min(self):
+        """
+        test the following binary search tree
+             3
+            /
+           2
+          /
+         1 <-- get prev node of 1
+        """
+        bst = BinarySearchTree()
+        bst.insert(3)
+        bst.insert(2)
+        node = bst.insert(1)
+        self.assertEqual(bst.prev(node), None)
