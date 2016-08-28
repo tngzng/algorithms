@@ -41,7 +41,18 @@ class BinarySearchTree(object):
         return None # input node is the min
 
     def next(self, node):
-        pass
+        # if node has right subtree, return min from that subtree
+        if node.right_child:
+            return self.min(start_node=node.right_child)
+
+        # traverse parents until a parent with a higher value is reached
+        next_node = node
+        while next_node:
+            if next_node.label > node.label:
+                return next_node
+            next_node = next_node.parent
+
+        return None # input node is the max
 
     def traverse_in_order(self):
         pass

@@ -6,6 +6,15 @@ from binary_search_tree import BinarySearchTree
 
 class TestHeap(unittest.TestCase):
     def test_insert(self):
+        """
+        test the following binary search tree
+              4
+             / \
+            /   \
+           2     6
+          / \   / \
+         1   3  5  7
+        """
         bst = BinarySearchTree()
         root = bst.insert(4)
         self.assertEqual(bst.root, root)
@@ -102,3 +111,52 @@ class TestHeap(unittest.TestCase):
         bst.insert(2)
         node = bst.insert(1)
         self.assertEqual(bst.prev(node), None)
+
+    def test_next_node_has_right_subtree(self):
+        """
+        test the following binary search tree
+         1 <-- get next node of 1
+          \
+           3
+          / \
+         2   4
+        """
+        bst = BinarySearchTree()
+        node = bst.insert(1)
+        bst.insert(3)
+        expected_next = bst.insert(2)
+        bst.insert(4)
+        self.assertEqual(bst.next(node), expected_next)
+
+    def test_next_node_has_no_right_subtree(self):
+        """
+        test the following binary search tree
+             4
+            /
+           1
+            \
+             2
+              \
+               3 <-- get next node of 3
+        """
+        bst = BinarySearchTree()
+        expected_next = bst.insert(4)
+        bst.insert(1)
+        bst.insert(2)
+        node = bst.insert(3)
+        self.assertEqual(bst.next(node), expected_next)
+
+    def test_prev_node_of_min(self):
+        """
+        test the following binary search tree
+         1
+          \
+           2
+            \
+             3 <-- get next node of 3
+        """
+        bst = BinarySearchTree()
+        bst.insert(1)
+        bst.insert(2)
+        node = bst.insert(3)
+        self.assertEqual(bst.next(node), None)
