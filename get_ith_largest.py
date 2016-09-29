@@ -1,5 +1,6 @@
 import random
 
+
 def get_ith_largest(arr, i):
     """
     Get the ith largest element of a list by recursively partitioning the list and continuing to search in the half of the list where the ith largest element resides.
@@ -24,6 +25,7 @@ def get_ith_largest(arr, i):
         new_arr = arr[new_pivot_location:]
         new_i = i - new_pivot_location
         return get_ith_largest(new_arr, new_i)
+
 
 def partition(arr):
     """
@@ -54,7 +56,3 @@ def partition(arr):
     arr[new_pivot_location] = temp
 
     return (arr, new_pivot_location)
-
-# test:
-# arr = [ 1, 2, 9, 5, 4, 6, 7, 3, 0, 100, -100, 10000 ]
-# print get_ith_largest(arr, 11) # expect 100

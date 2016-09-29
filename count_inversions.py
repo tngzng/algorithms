@@ -1,4 +1,4 @@
-def count_inversions(list, inversion_count = 0):
+def count_inversions(list, inversion_count=0):
   """
   recursively counts inversions of halved lists
   where inversions are instances where a larger el occurs before a smaller el
@@ -6,11 +6,12 @@ def count_inversions(list, inversion_count = 0):
 
   :param list list: list containing comparable elements
   :param list list: list containing comparable elements
-  :returns: dict w list, a merged list, and count, the number of inversions
+  :returns: {'list': the ordered list, 'count': total number of inversions}
   """
   if len(list) < 2:
     return { "list": list, "count": inversion_count }
   mid_point = len(list) / 2
+
   # recursively count inversions in 1st half of input
   first_half = count_inversions(list[0:mid_point], inversion_count)
   # recursively count inversions in 2nd half of input
@@ -19,14 +20,14 @@ def count_inversions(list, inversion_count = 0):
   running_inversion_count = first_half["count"] + second_half["count"]
   return merge_and_count_inversions(first_half["list"], second_half["list"], running_inversion_count)
 
-def merge_and_count_inversions(a, b, inversion_count):
+def merge_and_count_inversions(a, b, inversion_count=0):
   """
   steps through indexes in both input lists, appending the smaller val to the merged list at each step
   increments the inversion count when els from list b are appended to the output before a is exhausted
 
   :param list a: ordered list
   :param list b: ordered list
-  :returns: dict w list, a merged list, and count, the number of inversions
+  :returns: {'list': the ordered list, 'count': total number of inversions}
   """
   i = 0
   j = 0
@@ -64,10 +65,3 @@ def merge_and_count_inversions(a, b, inversion_count):
         pass # a is exhausted
 
   return { "list": merged, "count": inversion_count }
-
-list = [ 1, 2, 9, -1, 0]
-print count_inversions(list)["count"]
-
-# a = [1, 3, 5, 6]
-# b = [2, 4, 7, 8, 9]
-# print merge_and_count_inversions(a, b)

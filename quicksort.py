@@ -1,5 +1,6 @@
 import random
 
+
 def quicksort(list, left_bound=0, right_bound=None):
     """
     Sorts a list in place by recursively partitioning the list. Each partition orders a smaller subarray and produces new subarrays to partition.
@@ -9,21 +10,23 @@ def quicksort(list, left_bound=0, right_bound=None):
     :param int right_bound: Index for right bound of subarray.
     :returns: An ordered list.
     """
-    if not right_bound:
-        random.shuffle(list) # randomly sort on first call to prevent worst case scenario
-        right_bound = len(list) - 1 # right_bound is the last index on the first call
+    initial_call = right_bound == None
+    if initial_call:
+        random.shuffle(list) # prevent worst case scenario
+        right_bound = len(list) - 1
 
     if right_bound - left_bound < 2:
         return list # done recursing when the subarray has 1 element
 
-    (lt_subarray_bounds, gt_subarray_bounds) = partition(list, left_bound, right_bound)
+    (lt_subarray_bounds, gt_subarray_bounds) = partition_subarray(list, left_bound, right_bound)
 
     quicksort(list, lt_subarray_bounds[0], lt_subarray_bounds[1])
     quicksort(list, gt_subarray_bounds[0], gt_subarray_bounds[1])
 
     return list
 
-def partition(list, left_bound, right_bound):
+
+def partition_subarray(list, left_bound, right_bound):
     """
     Partition a subarray into two subarrays, one with values less than a pivot and one with values greater than a pivot. The subbarray is also ordered by swapping elements when out of place in relation to the pivot.
 
@@ -34,7 +37,7 @@ def partition(list, left_bound, right_bound):
     """
     pivot = list[left_bound]
     new_bound = left_bound + 1
-    for next_unsorted in range(left_bound + 1, right_bound + 1):
+    for next_unsorted in range(new_bound, right_bound + 1):
         if list[next_unsorted] < pivot:
             # move next_unsorted with the smaller els
             temp = list[next_unsorted]
@@ -47,13 +50,3 @@ def partition(list, left_bound, right_bound):
     list[new_bound - 1] = temp
 
     return ((left_bound, new_bound - 1), (new_bound, right_bound))
-
-list = [ 1, 2, 9, 5, 4, 6, 7, 3, 0, 100, -100, 10000 ]
-print quicksort(list)
-
-
-
-
-
-
-

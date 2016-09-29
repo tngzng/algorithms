@@ -15,6 +15,7 @@ def merge_sort(list):
   # merge
   return merge(first_half, second_half)
 
+
 def merge(a, b):
   """
   steps through indexes in both input lists, appending the smaller val to the output list at each step
@@ -52,6 +53,3 @@ def merge(a, b):
       j += 1
 
   return res
-
-list = [ 1, 2, 9, 5, 4, 6, 7, 3, 0, 100, -100, 10000 ]
-print merge_sort(list)

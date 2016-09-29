@@ -65,6 +65,8 @@ def get_edgelist(g):
     return list(edges)
 
 
+# TODO: since min_cut does not succeed all the time, determine how to write unit test
+
 # model this graph:
 # 'a'---'b'---'c'---'d'
 # |   X  |     |  X  |

@@ -36,22 +36,3 @@ def find_connected_component(g, node, explored):
                 connected_component.append(adj_node)
                 q.append(adj_node)
     return connected_component
-
-# model this graph:
-# 1---2   3---4   9
-# | X |   | X |
-# 5---6   7---8
-
-g = {
-    1: [2,5,6],
-    2: [1,5,6],
-    6: [5,1,2],
-    5: [1,2,6],
-    3: [7,8,4],
-    4: [3,7,8],
-    8: [7,3,4],
-    7: [3,4,8],
-    9: []
-}
-
-print get_connected_components(g)
