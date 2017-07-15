@@ -1,4 +1,14 @@
 class UnionFind:
+    """
+    The union find data structure maintains partitions in a graph
+
+    For ex, the graph below has two partitions. One with nodes 'a', 'b', and 'c'.
+    The other with nodes 'e' and 'd'
+
+    a <- b <- c
+
+    d <- e
+    """
     def __init__(self, node_labels=[]):
         self._union_find = {}
         for node_label in node_labels:
@@ -9,6 +19,13 @@ class UnionFind:
             self._union_find[node_label].set_parent_label(leader)
 
     def find(self, node_label):
+        """
+        Given a node label, return the label associated with the leader node for its partition
+
+        For ex, the leader node of 'c' in the partition below is 'a'
+
+        a <- b <- c
+        """
         node = self._union_find[node_label]
         parent = self._union_find[node.parent_label]
         path_to_leader = []
@@ -24,6 +41,22 @@ class UnionFind:
                 parent = self._union_find[parent.parent_label]
 
     def union(self, node_label_a, node_label_b):
+        """
+        Given two node labels, fuse the partitions associated with each node together
+
+        For example, the partitions
+        a <- b <- c
+
+        d <- e
+
+        Would become
+        a <- b <- c
+        ^
+        |
+        d <- e
+
+        With the union of nodes 'c' and 'e'
+        """
         leader_label_a = self.find(node_label_a)
         leader_label_b = self.find(node_label_b)
         leader_a = self._union_find[leader_label_a]
