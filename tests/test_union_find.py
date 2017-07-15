@@ -31,6 +31,24 @@ class TestUnionFind(unittest.TestCase):
         for child, expected_leader in expected_leaders:
             self.assertEqual(test_union_find.find(child), expected_leader)
 
+    def test_find__compresses_path_to_leader(self):
+        """
+        model a graph with one partition:
+        a <- b <- c <- d
+        """
+        test_union_find = UnionFind()
+        # override internal data structure to setup test
+        test_union_find._union_find = {
+            'd': Node('d', parent_label='c', rank=1),
+            'c': Node('c', parent_label='b', rank=1),
+            'b': Node('b', parent_label='a', rank=2),
+            'a': Node('a', parent_label='a', rank=3),
+        }
+        test_union_find.find('d')
+        for child_label in ['d', 'c', 'b']:
+            child_node = test_union_find._union_find[child_label]
+            self.assertEqual(child_node.parent_label, 'a')
+
     def test_union__leaders_have_diff_ranks(self):
         """
         model a graph with two partitions:

@@ -4,14 +4,21 @@ class UnionFind:
         for node_label in node_labels:
             self._union_find[node_label] = Node(node_label, parent_label=node_label)
 
+    def _update_leaders(self, node_labels, leader):
+        for node_label in node_labels:
+            self._union_find[node_label].set_parent_label(leader)
+
     def find(self, node_label):
-        # TODO add lazy path compression
         node = self._union_find[node_label]
         parent = self._union_find[node.parent_label]
+        path_to_leader = []
         while True:
+            path_to_leader.append(node.label)
             if parent.label == node.label:
                 # the partition leader's parent is itself
-                return parent.label
+                leader = parent.label
+                self._update_leaders(path_to_leader, leader)
+                return leader
             else:
                 node = parent
                 parent = self._union_find[parent.parent_label]
