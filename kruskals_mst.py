@@ -32,8 +32,12 @@ def kruskals_mst(edge_list):
     for edge in sorted_edges:
         leader_a = _union_find.find(edge[0])
         leader_b = _union_find.find(edge[1])
-        if leader_a != leader_b:
-            _union_find.union(leader_a, leader_b)
-            mst.append(edge)
+        # if the leaders are the same, the nodes are in the same partition of the union find.
+        # that means adding the current edge to the mst would create a cycle, so we reject it.
+        if leader_a == leader_b:
+            continue
+
+        _union_find.union(leader_a, leader_b)
+        mst.append(edge)
 
     return mst
