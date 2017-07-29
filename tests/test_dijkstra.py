@@ -5,7 +5,7 @@ import unittest
 from dijkstra import dijkstra
 
 
-class TestBinarySearchTree(unittest.TestCase):
+class TestDijkstra(unittest.TestCase):
     def test_insert(self):
         """
         test the following graph
