@@ -38,7 +38,31 @@ class TestHuffmanCodes(unittest.TestCase):
         self.assertEqual(output[1], 1)
 
     def test_traverse_children_and_assign_codes(self):
-        pass
+        """
+        test the following binary search tree
+              a
+             / \
+            /   \
+           b     c
+          / \   /
+         d   e  f
+        """
+        expected_code_dict = {
+            'd': '00',
+            'e': '01',
+            'f': '10',
+        }
+
+        f = Node(label='f')
+        c = Node(label='c', left_child=f)
+        d = Node(label='d')
+        e = Node(label='e')
+        b = Node(label='b', left_child=d, right_child=e)
+        a = Node(label='a', left_child=b, right_child=c)
+
+        code_dict = {}
+        _traverse_children_and_assign_codes(a, code_dict)
+        self.assertDictEqual(code_dict, expected_code_dict)
 
     def test_huffman_codes(self):
         pass
