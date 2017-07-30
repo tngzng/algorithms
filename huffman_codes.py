@@ -67,15 +67,11 @@ def _compare_and_pop_smallest(node_q_1, node_q_2):
 
 
 class Node:
-    def __init__(self, label='', parent_node=None, left_child=None, right_child=None, binary_code=''):
+    def __init__(self, label='', left_child=None, right_child=None, binary_code=''):
         self.label = label
-        self.parent_node = parent_node
         self.left_child = left_child
         self.right_child = right_child
         self.binary_code = binary_code
-
-    def update_parent(self, parent_node):
-        self.parent_node = parent_node
 
     def update_left_child(self, left_child):
         self.left_child = left_child
