@@ -4,19 +4,28 @@ def huffman_codes(char_frequencies):
     for char, frequency in sorted(char_frequencies, key=lambda x: x[1]):
         node_q.enqueue((Node(label=char), frequency))
 
-    while len(parent_q) or len(node_q):
+    while True:
+        parent_node = Node()
+
         node_frequency_a = _compare_and_pop_smallest(parent_q, node_q)
-        node_frequency_b = _compare_and_pop_smallest(parent_q, node_q)
         node_a = node_frequency_a[0]
-        node_b = node_frequency_b[0]
+        parent_node.update_left_child(node_a)
+        frequency_a = node_frequency_a[1]
+        combined_frequency = frequency_a
+        parent_label = node_a.label
 
-        parent_node = Node(left_child=node_a, right_child=node_b)
-        node_a.update_parent(parent_node)
-        node_b.update_parent(parent_node)
+        node_frequency_b = _compare_and_pop_smallest(parent_q, node_q)
+        if node_frequency_b:
+            node_b = node_frequency_b[0]
+            parent_node.update_right_child(node_b)
+            frequency_b = node_frequency_b[1]
+            combined_frequency = combined_frequency + frequency_b
+            parent_label = '{}{}'.format(parent_label, node_b.label)
 
-        frequency_a = node_frequency_a[0]
-        frequency_b = node_frequency_b[0]
-        combined_frequency = frequency_a + frequency_b
+        parent_node.update_label(parent_label)
+        if not len(parent_q) and not len(node_q):
+            break
+
         parent_q.enqueue((parent_node, combined_frequency))
 
     code_dict = {}
@@ -29,6 +38,7 @@ def _traverse_children_and_assign_codes(parent, code_dict):
     if not parent.left_child and not parent.right_child:
         code_dict[parent.label] = parent.binary_code
 
+    # TODO: update to return codes as a bitarray for memory savings
     if parent.left_child:
         left_code = '{parent_code}0'.format(parent_code=parent.binary_code)
         parent.left_child.update_code(left_code)
@@ -75,6 +85,9 @@ class Node:
 
     def update_code(self, binary_code):
         self.binary_code = binary_code
+
+    def update_label(self, label):
+        self.label = label
 
 
 class Queue:
