@@ -65,4 +65,24 @@ class TestHuffmanCodes(unittest.TestCase):
         self.assertDictEqual(code_dict, expected_code_dict)
 
     def test_huffman_codes(self):
-        pass
+        char_frequencies = [
+            ('a', 3),
+            ('b', 2),
+            ('c', 6),
+            ('d', 8),
+            ('e', 2),
+            ('f', 6),
+        ]
+
+        expected_code_lens= {
+            'a': 3,
+            'b': 4,
+            'c': 2,
+            'd': 2,
+            'e': 4,
+            'f': 2,
+        }
+
+        code_dict = huffman_codes(char_frequencies)
+        for char, code in code_dict.items():
+            self.assertEqual(len(code), expected_code_lens[char])
