@@ -1,4 +1,12 @@
 def huffman_codes(char_frequencies):
+    '''
+    given an alphabet where each character has a different frequency of occurring,
+    produce a representation in binary for each character that minimizes the memory
+    needed to encode something in the alphabet
+
+    :param (list) char_frequencies: a list of tuples representing chars and their frequencies
+    :returns (dict): a dict representing chars and their binary encodings
+    '''
     parent_q = Queue()
     node_q = Queue()
     for char, frequency in sorted(char_frequencies, key=lambda x: x[1]):
