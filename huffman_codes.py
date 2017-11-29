@@ -1,12 +1,12 @@
 def huffman_codes(char_frequencies):
-    '''
+    """
     given an alphabet where each character has a different frequency of occurring,
     produce a representation in binary for each character that minimizes the memory
     needed to encode something in the alphabet
 
     :param (list) char_frequencies: a list of tuples representing chars and their frequencies
     :returns (dict): a dict representing chars and their binary encodings
-    '''
+    """
     # construct a queue of nodes, with highest priority given to the lowest frequency chars
     node_q = Queue()
     for char, frequency in sorted(char_frequencies, key=lambda x: x[1]):
@@ -49,6 +49,38 @@ def huffman_codes(char_frequencies):
 
 
 def _traverse_children_and_assign_codes(parent, code_dict):
+    """
+    for a given `parent` node, traverse it's children and add the binary representation of the
+    leaf nodes to the provided `code_dict`
+
+    binary representation is assigned by treating the left child as 0 and the right child as 1
+
+    :param HuffmanNode parent: the parent node whose children we will traverse
+    :param dict code_dict: a dictionary of running code assignments
+
+    for ex, the following binary tree:
+         dec
+         / \
+        /   \
+       de     c
+      / \
+     d   e
+
+    would correspond to the following binary representations:
+          .
+         / \
+        /   \
+       0     1
+      / \
+     00  01
+
+    and would produce this code assignment for its leaves:
+    {
+        'd': '00',
+        'e': '01',
+        'c': '1',
+    }
+    """
     # when we hit a leaf, add it's binary code to our final output dict
     if not parent.left_child and not parent.right_child:
         code_dict[parent.label] = parent.binary_code
@@ -75,6 +107,7 @@ def _compare_and_pop_smallest(node_q_1, node_q_2):
     if not len(node_q_2):
         return node_q_1.dequeue()
 
+    # compare nodes by frequency
     if node_q_1.peak()[1] < node_q_2.peak()[1]:
         return node_q_1.dequeue()
     else:
