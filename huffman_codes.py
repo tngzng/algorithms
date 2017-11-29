@@ -7,34 +7,41 @@ def huffman_codes(char_frequencies):
     :param (list) char_frequencies: a list of tuples representing chars and their frequencies
     :returns (dict): a dict representing chars and their binary encodings
     '''
-    parent_q = Queue()
+    # construct a queue of nodes, with highest priority given to the lowest frequency chars
     node_q = Queue()
     for char, frequency in sorted(char_frequencies, key=lambda x: x[1]):
-        node_q.enqueue((Node(label=char), frequency))
+        node_q.enqueue((HuffmanNode(label=char), frequency))
 
+    # build a binary tree, successively merging nodes into larger subtrees
+    subtree_q = Queue()
     while True:
-        parent_node = Node()
+        parent_node = HuffmanNode()
 
-        node_frequency_a = _compare_and_pop_smallest(parent_q, node_q)
-        node_a = node_frequency_a[0]
-        parent_node.update_left_child(node_a)
-        frequency_a = node_frequency_a[1]
-        combined_frequency = frequency_a
-        parent_label = node_a.label
+        # at each step choose the two lowest frequency nodes and merge them
+        # into a subtree under a new parent_node
+        left_node_frequency = _compare_and_pop_smallest(subtree_q, node_q)
+        right_node_frequency = _compare_and_pop_smallest(subtree_q, node_q)
 
-        node_frequency_b = _compare_and_pop_smallest(parent_q, node_q)
-        if node_frequency_b:
-            node_b = node_frequency_b[0]
-            parent_node.update_right_child(node_b)
-            frequency_b = node_frequency_b[1]
-            combined_frequency = combined_frequency + frequency_b
-            parent_label = '{}{}'.format(parent_label, node_b.label)
+        left_node = left_node_frequency[0]
+        parent_node.update_left_child(left_node)
+        left_frequency = left_node_frequency[1]
+        combined_frequency = left_frequency
+        parent_label = left_node.label
+
+        if right_node_frequency:
+            right_node = right_node_frequency[0]
+            parent_node.update_right_child(right_node)
+            right_frequency = right_node_frequency[1]
+            combined_frequency = combined_frequency + right_frequency
+            parent_label = '{}{}'.format(parent_label, right_node.label)
 
         parent_node.update_label(parent_label)
-        if not len(parent_q) and not len(node_q):
+
+        # break when the binary tree has been fully constructed
+        if not len(subtree_q) and not len(node_q):
             break
 
-        parent_q.enqueue((parent_node, combined_frequency))
+        subtree_q.enqueue((parent_node, combined_frequency))
 
     code_dict = {}
     _traverse_children_and_assign_codes(parent_node, code_dict)
@@ -74,7 +81,7 @@ def _compare_and_pop_smallest(node_q_1, node_q_2):
         return node_q_2.dequeue()
 
 
-class Node:
+class HuffmanNode:
     def __init__(self, label='', left_child=None, right_child=None, binary_code=''):
         self.label = label
         self.left_child = left_child

@@ -2,7 +2,7 @@ import sys
 import os
 sys.path.append(os.path.abspath(os.path.dirname(__file__) + '../..'))
 import unittest
-from huffman_codes import huffman_codes, Node, Queue, _compare_and_pop_smallest, \
+from huffman_codes import huffman_codes, HuffmanNode, Queue, _compare_and_pop_smallest, \
                           _traverse_children_and_assign_codes
 
 
@@ -44,21 +44,20 @@ class TestHuffmanCodes(unittest.TestCase):
              / \
             /   \
            b     c
-          / \   /
-         d   e  f
+          / \
+         d   e
         """
         expected_code_dict = {
             'd': '00',
             'e': '01',
-            'f': '10',
+            'c': '1',
         }
 
-        f = Node(label='f')
-        c = Node(label='c', left_child=f)
-        d = Node(label='d')
-        e = Node(label='e')
-        b = Node(label='b', left_child=d, right_child=e)
-        a = Node(label='a', left_child=b, right_child=c)
+        c = HuffmanNode(label='c')
+        d = HuffmanNode(label='d')
+        e = HuffmanNode(label='e')
+        b = HuffmanNode(label='b', left_child=d, right_child=e)
+        a = HuffmanNode(label='a', left_child=b, right_child=c)
 
         code_dict = {}
         _traverse_children_and_assign_codes(a, code_dict)
