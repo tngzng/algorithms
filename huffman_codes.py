@@ -43,6 +43,8 @@ def huffman_codes(char_frequencies):
 
         # at each step choose the two lowest frequency nodes and merge them
         # into a subtree under a new parent_node
+        # since we build the tree from bottom to top that means
+        # the highest frequency chars will end up near the root of the tree where we want them
         left_node_frequency = _compare_and_pop_smallest(subtree_q, node_q)
         right_node_frequency = _compare_and_pop_smallest(subtree_q, node_q)
 
@@ -74,7 +76,7 @@ def huffman_codes(char_frequencies):
 
 def _traverse_children_and_assign_codes(parent, code_dict):
     """
-    for a given `parent` node, traverse it's children and add the binary representation of the
+    for a given `parent` node, traverse its children and add the binary representation of the
     leaf nodes to the provided `code_dict`
 
     binary representation is assigned by treating the left child as 0 and the right child as 1
@@ -105,7 +107,7 @@ def _traverse_children_and_assign_codes(parent, code_dict):
         'a': '1',
     }
     """
-    # when we hit a leaf, add it's binary code to our final output dict
+    # when we hit a leaf, add its binary code to our final output dict
     if not parent.left_child and not parent.right_child:
         code_dict[parent.label] = parent.binary_code
 
@@ -156,6 +158,9 @@ class HuffmanNode:
 
     def update_label(self, label):
         self.label = label
+
+    def __repr__(self):
+        return self.label
 
 
 class Queue:
