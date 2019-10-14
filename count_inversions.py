@@ -1,4 +1,4 @@
-def count_inversions(list, inversion_count=0):
+def count_inversions(list: list, inversion_count: int = 0) -> dict:
   """
   recursively counts inversions of halved lists
   where inversions are instances where a larger el occurs before a smaller el
@@ -20,7 +20,7 @@ def count_inversions(list, inversion_count=0):
   running_inversion_count = first_half["count"] + second_half["count"]
   return merge_and_count_inversions(first_half["list"], second_half["list"], running_inversion_count)
 
-def merge_and_count_inversions(a, b, inversion_count=0):
+def merge_and_count_inversions(a: list, b: list, inversion_count: int = 0) -> dict:
   """
   steps through indexes in both input lists, appending the smaller val to the merged list at each step
   increments the inversion count when els from list b are appended to the output before a is exhausted
