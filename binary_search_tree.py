@@ -13,7 +13,7 @@ class BinarySearchNode:
         self.update_parent()
 
     def __str__(self):
-        return '{} {}'.format(self.__class__.__name__, self.label)
+        return f'{self.__class__.__name__} {self.label}'
 
     def update_parent(self):
         if not self.parent:

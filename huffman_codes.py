@@ -59,7 +59,7 @@ def huffman_codes(char_frequencies):
             parent_node.update_right_child(right_node)
             right_frequency = right_node_frequency[1]
             combined_frequency = combined_frequency + right_frequency
-            parent_label = '{}{}'.format(parent_label, right_node.label)
+            parent_label = f'{parent_label}{right_node.label}'
 
         parent_node.update_label(parent_label)
 
@@ -113,12 +113,12 @@ def _traverse_children_and_assign_codes(parent, code_dict):
 
     # TODO: update to return codes as a bitarray for memory savings
     if parent.left_child:
-        left_code = '{parent_code}0'.format(parent_code=parent.binary_code)
+        left_code = f'{parent.binary_code}0'
         parent.left_child.update_code(left_code)
         _traverse_children_and_assign_codes(parent.left_child, code_dict)
 
     if parent.right_child:
-        right_code = '{parent_code}1'.format(parent_code=parent.binary_code)
+        right_code = f'{parent.binary_code}1'
         parent.right_child.update_code(right_code)
         _traverse_children_and_assign_codes(parent.right_child, code_dict)
 
