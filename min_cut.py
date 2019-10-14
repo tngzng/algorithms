@@ -1,8 +1,10 @@
+from typing import Mapping, List, Tuple
 import random
 import math
 import sys
 
-def min_cut(g):
+
+def min_cut(g: Mapping[str, List[str]]) -> int:
     """
     Return a min cut with probability of failure 1/n.
 
@@ -21,7 +23,7 @@ def min_cut(g):
 
     return min
 
-def random_contraction(g):
+def random_contraction(g: Mapping[str, List[str]]) -> int:
     """
     Return a potential minimum cut from a graph.
 
@@ -48,7 +50,7 @@ def random_contraction(g):
 
     return len(edges)
 
-def get_edgelist(g):
+def get_edgelist(g: Mapping[str, List[str]]) -> List[Tuple[str, str]]:
     """
     Return a list of edges from a graph represented as an adjacency list.
 
