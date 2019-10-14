@@ -1,7 +1,9 @@
+from typing import Tuple
+
 import random
 
 
-def get_ith_largest(arr, i):
+def get_ith_largest(arr: list, i: int) -> int:
     """
     Get the ith largest element of a list by recursively partitioning the list and continuing to search in the half of the list where the ith largest element resides.
 
@@ -27,7 +29,7 @@ def get_ith_largest(arr, i):
         return get_ith_largest(new_arr, new_i)
 
 
-def partition(arr):
+def partition(arr: list) -> Tuple[list, int]:
     """
     Partition a list by swapping elements when out of place in relation to a randomly selected pivot.
 
