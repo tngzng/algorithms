@@ -1,8 +1,35 @@
+from typing import Optional
+
+
+class BinarySearchNode:
+    def __init__(self, label: int,
+                 parent: Optional['BinarySearchNode']=None,
+                 left_child: Optional['BinarySearchNode']=None,
+                 right_child: Optional['BinarySearchNode']=None):
+        self.label = label
+        self.parent = parent
+        self.left_child = left_child
+        self.right_child = right_child
+        self.update_parent()
+
+    def __str__(self):
+        return '{} {}'.format(self.__class__.__name__, self.label)
+
+    def update_parent(self):
+        if not self.parent:
+            return # root node
+        parent_label = self.parent.label
+        if parent_label < self.label:
+            self.parent.right_child = self
+        else:
+            self.parent.left_child = self
+
+
 class BinarySearchTree:
     def __init__(self):
         self.root = None
 
-    def min(self, start_node=None):
+    def min(self, start_node: Optional[BinarySearchNode] = None):
         if not start_node:
             start_node = self.root
         if not start_node:
@@ -14,7 +41,7 @@ class BinarySearchTree:
 
         return last_taversed_node
 
-    def max(self, start_node=None):
+    def max(self, start_node: Optional[BinarySearchNode] = None):
         if not start_node:
             start_node = self.root
         if not start_node:
@@ -26,7 +53,7 @@ class BinarySearchTree:
 
         return last_taversed_node
 
-    def prev(self, node):
+    def prev(self, node: BinarySearchNode):
         # if node has left subtree, return max from that subtree
         if node.left_child:
             return self.max(start_node=node.left_child)
@@ -40,7 +67,7 @@ class BinarySearchTree:
 
         return None # input node is the min
 
-    def next(self, node):
+    def next(self, node: BinarySearchNode):
         # if node has right subtree, return min from that subtree
         if node.right_child:
             return self.min(start_node=node.right_child)
@@ -62,7 +89,7 @@ class BinarySearchTree:
                 yield next_node
                 next_node = self.next(next_node)
 
-    def search(self, start_node, target_key):
+    def search(self, start_node: BinarySearchNode, target_key: int):
         """
         returns a tuple representing (was_found, last_traversed_node)
         """
@@ -81,7 +108,7 @@ class BinarySearchTree:
 
         return self.search(child_node, target_key)
 
-    def insert(self, key):
+    def insert(self, key: int):
         if not self.root:
             self.root = BinarySearchNode(key, parent=None)
             return self.root
@@ -93,24 +120,3 @@ class BinarySearchTree:
             return None # duplicate keys not supported
 
         return BinarySearchNode(key, parent=last_traversed_node)
-
-
-class BinarySearchNode:
-    def __init__(self, label, parent=None, left_child=None, right_child=None):
-        self.label = label
-        self.parent = parent
-        self.left_child = left_child
-        self.right_child = right_child
-        self.update_parent()
-
-    def __str__(self):
-        return '{} {}'.format(self.__class__.__name__, self.label)
-
-    def update_parent(self):
-        if not self.parent:
-            return # root node
-        parent_label = self.parent.label
-        if parent_label < self.label:
-            self.parent.right_child = self
-        else:
-            self.parent.left_child = self
