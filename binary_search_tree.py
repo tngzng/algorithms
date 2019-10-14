@@ -1,21 +1,21 @@
-from typing import Optional
+from typing import Optional, Generator, Tuple
 
 
 class BinarySearchNode:
     def __init__(self, label: int,
                  parent: Optional['BinarySearchNode']=None,
                  left_child: Optional['BinarySearchNode']=None,
-                 right_child: Optional['BinarySearchNode']=None):
+                 right_child: Optional['BinarySearchNode']=None) -> None:
         self.label = label
         self.parent = parent
         self.left_child = left_child
         self.right_child = right_child
         self.update_parent()
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f'{self.__class__.__name__} {self.label}'
 
-    def update_parent(self):
+    def update_parent(self) -> None:
         if not self.parent:
             return # root node
         parent_label = self.parent.label
@@ -26,10 +26,10 @@ class BinarySearchNode:
 
 
 class BinarySearchTree:
-    def __init__(self):
+    def __init__(self) -> None:
         self.root = None
 
-    def min(self, start_node: Optional[BinarySearchNode] = None):
+    def min(self, start_node: Optional[BinarySearchNode] = None) -> Optional[BinarySearchNode]:
         if not start_node:
             start_node = self.root
         if not start_node:
@@ -41,7 +41,7 @@ class BinarySearchTree:
 
         return last_taversed_node
 
-    def max(self, start_node: Optional[BinarySearchNode] = None):
+    def max(self, start_node: Optional[BinarySearchNode] = None) -> Optional[BinarySearchNode]:
         if not start_node:
             start_node = self.root
         if not start_node:
@@ -53,7 +53,7 @@ class BinarySearchTree:
 
         return last_taversed_node
 
-    def prev(self, node: BinarySearchNode):
+    def prev(self, node: BinarySearchNode) -> Optional[BinarySearchNode]:
         # if node has left subtree, return max from that subtree
         if node.left_child:
             return self.max(start_node=node.left_child)
@@ -67,7 +67,7 @@ class BinarySearchTree:
 
         return None # input node is the min
 
-    def next(self, node: BinarySearchNode):
+    def next(self, node: BinarySearchNode) -> Optional[BinarySearchNode]:
         # if node has right subtree, return min from that subtree
         if node.right_child:
             return self.min(start_node=node.right_child)
@@ -81,7 +81,7 @@ class BinarySearchTree:
 
         return None # input node is the max
 
-    def traverse_in_order(self):
+    def traverse_in_order(self) -> Generator[BinarySearchNode, None, None]:
         min_node = self.min()
         if min_node:
             next_node = min_node
@@ -89,7 +89,7 @@ class BinarySearchTree:
                 yield next_node
                 next_node = self.next(next_node)
 
-    def search(self, start_node: BinarySearchNode, target_key: int):
+    def search(self, start_node: BinarySearchNode, target_key: int) -> Tuple[bool, BinarySearchNode]:
         """
         returns a tuple representing (was_found, last_traversed_node)
         """
@@ -108,7 +108,7 @@ class BinarySearchTree:
 
         return self.search(child_node, target_key)
 
-    def insert(self, key: int):
+    def insert(self, key: int) -> BinarySearchNode:
         if not self.root:
             self.root = BinarySearchNode(key, parent=None)
             return self.root

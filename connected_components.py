@@ -1,6 +1,8 @@
+from typing import Mapping, List
 from collections import deque
 
-def get_connected_components(g):
+
+def get_connected_components(g: Mapping[int, List[int]]) -> List[List]:
     """
     Return an array of arrays, each representing a connected component.
 
