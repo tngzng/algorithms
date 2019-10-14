@@ -4,7 +4,7 @@ Algorithm implementations in python.
 ## set up dev env
 ```
 cd algorithms
-virtualenv venv
+python3 -m venv .
 ```
 
 ## run tests
