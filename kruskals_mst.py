@@ -1,7 +1,9 @@
+from typing import List, Tuple
+
 from union_find import UnionFind
 
 
-def kruskals_mst(edge_list):
+def kruskals_mst(edge_list: List[Tuple[str, str, int]]):
     '''
     for a given edge_list representing an undirected graph,
     return an edge_list representing the minimum spanning tree (mst) for the input graph.
