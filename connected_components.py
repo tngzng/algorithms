@@ -1,4 +1,4 @@
-from typing import Mapping, List
+from typing import Mapping, List, Set
 from collections import deque
 
 
@@ -18,7 +18,7 @@ def get_connected_components(g: Mapping[int, List[int]]) -> List[List]:
             connected_components.append(connected_component)
     return connected_components
 
-def find_connected_component(g, node, explored):
+def find_connected_component(g: Mapping[int, List[int]], node: int, explored: Set[int]):
     """
     Breadth first search implementation that returns a connected component for a given starting node.
 
