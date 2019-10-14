@@ -1,4 +1,4 @@
-class BinarySearchTree(object):
+class BinarySearchTree:
     def __init__(self):
         self.root = None
 
@@ -95,7 +95,7 @@ class BinarySearchTree(object):
         return BinarySearchNode(key, parent=last_traversed_node)
 
 
-class BinarySearchNode(object):
+class BinarySearchNode:
     def __init__(self, label, parent=None, left_child=None, right_child=None):
         self.label = label
         self.parent = parent

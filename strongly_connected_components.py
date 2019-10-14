@@ -1,4 +1,4 @@
-class StronglyConnectedComponents(object):
+class StronglyConnectedComponents:
     def __init__(self):
         self.reset_dfs_vars()
 

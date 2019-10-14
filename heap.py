@@ -1,4 +1,4 @@
-class Heap(object):
+class Heap:
     """
     This is a heap implementation that uses an array. Since a heap is an as-complete-as-possible binary tree, the parent and children of any given key in the heap can be found by simple arithmetic. For example, let's say we have the following heap:
              1
