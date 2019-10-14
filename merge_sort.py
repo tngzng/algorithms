@@ -1,4 +1,4 @@
-def merge_sort(list: list):
+def merge_sort(list: list) -> list:
   """
   recursively sorts halved lists, merging the results at each level
 
@@ -16,7 +16,7 @@ def merge_sort(list: list):
   return merge(first_half, second_half)
 
 
-def merge(a: list, b: list):
+def merge(a: list, b: list) -> list:
   """
   steps through indexes in both input lists, appending the smaller val to the output list at each step
 
