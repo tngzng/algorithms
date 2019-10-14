@@ -10,7 +10,7 @@ def count_inversions(list, inversion_count=0):
   """
   if len(list) < 2:
     return { "list": list, "count": inversion_count }
-  mid_point = len(list) / 2
+  mid_point = len(list) // 2
 
   # recursively count inversions in 1st half of input
   first_half = count_inversions(list[0:mid_point], inversion_count)

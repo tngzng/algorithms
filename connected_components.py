@@ -10,7 +10,7 @@ def get_connected_components(g):
     connected_components = []
     explored = set([])
     node_count = len(g)
-    for i in xrange(1, node_count + 1):
+    for i in range(1, node_count + 1):
         if i not in explored:
             connected_component = find_connected_component(g, i, explored)
             connected_components.append(connected_component)

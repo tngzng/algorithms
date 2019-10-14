@@ -15,8 +15,7 @@ def topological_sort(g):
     global topological_order
     global current_label
 
-    keys = g.iterkeys()
-    nodes = keys
+    nodes = g.keys()
     explored = set([])
     current_label = len(g) # count backwards
     topological_order = {}

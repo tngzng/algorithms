@@ -11,7 +11,7 @@ class Heap(object):
     [1, 2, 3, 4, 5]
 
     The parent of key 5 can be found by taken the floor of the key's position divided by 2.
-    5 / 2 = 2
+    5 // 2 = 2
 
     Similarly, the children of key 2 can be found by multiplying the key's position and adding 1.
     2 * 2 = 4
@@ -72,10 +72,10 @@ class Heap(object):
         self.heap[i] = self.heap[j]
         self.heap[j] = tmp
 
-    def parent_position(self, position):
-        return position / 2
+    def parent_position(self, position: int) -> int:
+        return position // 2
 
-    def min_child_position(self, position):
+    def min_child_position(self, position: int):
         (pos_1, pos_2) = (2 * position, 2 * position + 1)
         try:
             child_1 = self.heap[pos_1 - 1]

@@ -42,4 +42,4 @@ class TestHeap(unittest.TestCase):
         return False
 
     def parent_position(self, position):
-        return position / 2
+        return position // 2
