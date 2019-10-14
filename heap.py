@@ -17,10 +17,10 @@ class Heap:
     2 * 2 = 4
     2 * 2 + 1 = 5
     """
-    def __init__(self):
+    def __init__(self) -> None:
         self.heap = []
 
-    def insert(self, key):
+    def insert(self, key: int) -> None:
         """
         insert accepts a key and places it in a position that maintains the integrity of the heap.
         (ie in a position where the key is greater than its parent.)
@@ -29,7 +29,7 @@ class Heap:
         position = len(self.heap)
         self.bubble_up(key, position)
 
-    def bubble_up(self, key, position):
+    def bubble_up(self, key: int, position: int) -> None:
         """
         bubble_up recursively swaps the inputted child key with it's parent, until it is greater than or equal to its parent.
         """
@@ -42,7 +42,7 @@ class Heap:
             position = parent_position
             self.bubble_up(key, position)
 
-    def extract_min(self):
+    def extract_min(self) -> int:
         """
         extract_min returns the minimum key from the heap and reorders the remaining keys to maintain the integrity of the heap, so that any given child is less than it's parent.
         """
@@ -53,7 +53,7 @@ class Heap:
         self.bubble_down(key, position)
         return res
 
-    def bubble_down(self, key, position):
+    def bubble_down(self, key: int, position: int) -> None:
         """
         bubble_down recursively swaps the inputted parent key with it's minimum child, until it is less than or equal to its minimum child.
         """
@@ -66,7 +66,7 @@ class Heap:
             position = min_child_pos
             self.bubble_down(key, position)
 
-    def swap(self, position_1, position_2):
+    def swap(self, position_1: int, position_2: int) -> None:
         i, j = (position_1 - 1, position_2 - 1)
         tmp = self.heap[i]
         self.heap[i] = self.heap[j]
@@ -75,7 +75,7 @@ class Heap:
     def parent_position(self, position: int) -> int:
         return position // 2
 
-    def min_child_position(self, position: int):
+    def min_child_position(self, position: int) -> int:
         (pos_1, pos_2) = (2 * position, 2 * position + 1)
         try:
             child_1 = self.heap[pos_1 - 1]
