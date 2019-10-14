@@ -1,6 +1,8 @@
+from typing import Mapping, List
 from heapq import heappush, heappop
 
-def dijkstra(g, start):
+
+def dijkstra(g: Mapping[int, List[int]], start: str) -> Mapping[str, int]:
     """
     return cost of the shortest path from the start node to all other nodes in g
     """
