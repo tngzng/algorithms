@@ -6,7 +6,7 @@ def dijkstra(g: Mapping[int, List[int]], start: str) -> Mapping[str, int]:
     """
     return cost of the shortest path from the start node to all other nodes in g
     """
-    discovered = set([start])
+    discovered = {start}
     res = {}
     h = [(0, start)] # heap h stores (cost, node) from the start node
     heap_entries = {start: (0, start)}

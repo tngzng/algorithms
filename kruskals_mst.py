@@ -4,7 +4,7 @@ from union_find import UnionFind
 
 
 def kruskals_mst(edge_list: List[Tuple[str, str, int]]):
-    '''
+    """
     for a given edge_list representing an undirected graph,
     return an edge_list representing the minimum spanning tree (mst) for the input graph.
 
@@ -24,10 +24,10 @@ def kruskals_mst(edge_list: List[Tuple[str, str, int]]):
     an mst is the tree with the lowest summed edge weights that connects all a graph's nodes.
     for example, we would expect this mst to be returned for the input graph above:
     [('a', 'c', 1), ('b', 'c', 2)]
-    '''
+    """
     mst = []
-    node_tups = [(tup[0], tup[1]) for tup in edge_list]
-    unique_nodes = {tup_el for tup in node_tups for tup_el in tup}
+    node_tuples = [(tup[0], tup[1]) for tup in edge_list]
+    unique_nodes = {tup_el for tup in node_tuples for tup_el in tup}
     _union_find = UnionFind(unique_nodes)
     sorted_edges = sorted(edge_list, key=lambda x: x[2])
 

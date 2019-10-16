@@ -14,14 +14,14 @@ def min_cut(g: Mapping[str, List[str]]) -> int:
     n = len(g)
     # repeat n choose 2 * ln n times
     runs = int((n * (n - 1) / 2) * math.log(n))
-    min = sys.maxint
+    minimum = sys.maxint
     for i in range(0, runs):
         temp_g = g
         res = random_contraction(temp_g)
-        if res < min:
-            min = res
+        if res < minimum:
+            minimum = res
 
-    return min
+    return minimum
 
 def random_contraction(g: Mapping[str, List[str]]) -> int:
     """
@@ -85,4 +85,4 @@ g = {
     'e': ['a','b','f']
 }
 
-print min_cut(g)
+print(min_cut(g))

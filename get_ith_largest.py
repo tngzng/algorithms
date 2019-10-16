@@ -1,5 +1,4 @@
 from typing import Tuple
-
 import random
 
 
@@ -57,4 +56,4 @@ def partition(arr: list) -> Tuple[list, int]:
     arr[0] = arr[new_pivot_location]
     arr[new_pivot_location] = temp
 
-    return (arr, new_pivot_location)
+    return arr, new_pivot_location
