@@ -4,14 +4,14 @@ from algorithms.union_find import UnionFind
 
 
 def kruskals_mst(edge_list: List[Tuple[str, str, int]]):
-    """
+    r"""
     for a given edge_list representing an undirected graph,
     return an edge_list representing the minimum spanning tree (mst) for the input graph.
 
     the input edge_list should consist of tuples as follows: (node_a, node_b, edge_weight).
     for example, the graph below:
               a
-          5  / \  1
+          5  / \ 1
             /   \
            b --- c
              2
