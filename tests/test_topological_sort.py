@@ -25,7 +25,7 @@ class TestTopologicalSort(unittest.TestCase):
         g = {
             'a': ['b', 'c'],
             'b': ['d'],
-            'c': ['d'] ,
+            'c': ['d'],
             'd': [],
         }
 

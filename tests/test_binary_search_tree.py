@@ -2,9 +2,10 @@ import unittest
 
 from algorithms.binary_search_tree import BinarySearchTree
 
+
 class TestBinarySearchTree(unittest.TestCase):
     def test_insert(self):
-        """
+        r"""
         test the following binary search tree
               4
              / \
@@ -21,7 +22,7 @@ class TestBinarySearchTree(unittest.TestCase):
         self.assertEqual(bst.root.left_child, left_child)
         left_child_left_child = bst.insert(1)
         self.assertEqual(bst.root.left_child.left_child, left_child_left_child)
-        left_child_right_child =bst.insert(3)
+        left_child_right_child = bst.insert(3)
         self.assertEqual(bst.root.left_child.right_child, left_child_right_child)
 
         right_child = bst.insert(6)
@@ -32,7 +33,7 @@ class TestBinarySearchTree(unittest.TestCase):
         self.assertEqual(bst.root.right_child.right_child, right_child_right_child)
 
     def test_min(self):
-        """
+        r"""
         test the following binary search tree
              3
             /
@@ -47,7 +48,7 @@ class TestBinarySearchTree(unittest.TestCase):
         self.assertEqual(bst.min(), expected_min)
 
     def test_max(self):
-        """
+        r"""
         test the following binary search tree
          1
           \
@@ -62,9 +63,9 @@ class TestBinarySearchTree(unittest.TestCase):
         self.assertEqual(bst.max(), expected_max)
 
     def test_prev_node_has_left_subtree(self):
-        """
+        r"""
         test the following binary search tree
-             4 <-- get prev node of 4
+             4 <-- get node 4's prev node
             /
            2
           / \
@@ -78,7 +79,7 @@ class TestBinarySearchTree(unittest.TestCase):
         self.assertEqual(bst.prev(node), expected_prev)
 
     def test_prev_node_has_no_left_subtree(self):
-        """
+        r"""
         test the following binary search tree
              4
             /
@@ -86,7 +87,7 @@ class TestBinarySearchTree(unittest.TestCase):
             \
              3
             /
-           2 <-- get prev node of 2
+           2 <-- get node 2's prev node
         """
         bst = BinarySearchTree()
         bst.insert(4)
@@ -96,13 +97,13 @@ class TestBinarySearchTree(unittest.TestCase):
         self.assertEqual(bst.prev(node), expected_prev)
 
     def test_prev_node_of_min(self):
-        """
+        r"""
         test the following binary search tree
              3
             /
            2
           /
-         1 <-- get prev node of 1
+         1 <-- get node 1's prev node
         """
         bst = BinarySearchTree()
         bst.insert(3)
@@ -110,10 +111,25 @@ class TestBinarySearchTree(unittest.TestCase):
         node = bst.insert(1)
         self.assertEqual(bst.prev(node), None)
 
-    def test_next_node_has_right_subtree(self):
-        """
+    def test_next_node_of_min(self):
+        r"""
         test the following binary search tree
-         1 <-- get next node of 1
+         1
+          \
+           2
+            \
+             3 <-- get node 3's next node (None)
+        """
+        bst = BinarySearchTree()
+        bst.insert(1)
+        bst.insert(2)
+        node = bst.insert(3)
+        self.assertEqual(bst.next(node), None)
+
+    def test_next_node_has_right_subtree(self):
+        r"""
+        test the following binary search tree
+         1 <-- get node 1's next node
           \
            3
           / \
@@ -127,7 +143,7 @@ class TestBinarySearchTree(unittest.TestCase):
         self.assertEqual(bst.next(node), expected_next)
 
     def test_next_node_has_no_right_subtree(self):
-        """
+        r"""
         test the following binary search tree
              4
             /
@@ -135,7 +151,7 @@ class TestBinarySearchTree(unittest.TestCase):
             \
              2
               \
-               3 <-- get next node of 3
+               3 <-- get node 3's next node
         """
         bst = BinarySearchTree()
         expected_next = bst.insert(4)
@@ -144,23 +160,8 @@ class TestBinarySearchTree(unittest.TestCase):
         node = bst.insert(3)
         self.assertEqual(bst.next(node), expected_next)
 
-    def test_prev_node_of_min(self):
-        """
-        test the following binary search tree
-         1
-          \
-           2
-            \
-             3 <-- get next node of 3
-        """
-        bst = BinarySearchTree()
-        bst.insert(1)
-        bst.insert(2)
-        node = bst.insert(3)
-        self.assertEqual(bst.next(node), None)
-
     def test_traverse_in_order(self):
-        """
+        r"""
         test the following binary search tree
               4
              / \
