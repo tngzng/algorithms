@@ -26,7 +26,8 @@ class StronglyConnectedComponents:
 
     def strongly_connected_components(self, graph: Mapping[int, List[int]]) -> List[int]:
         """
-        Given a directed graph, return an array of its strongly connected components. A strongly connected component is a collection of nodes where each node is reachable from every other node.
+        Given a directed graph, return an array of its strongly connected components.
+        A strongly connected component is a collection of nodes where each node is reachable from every other node.
 
         This implementation assumes the inputted graph is an adjacency list of nodes.
         """
@@ -50,7 +51,7 @@ class StronglyConnectedComponents:
         """
         Depth first search that:
         1. Updates the global variable finishing_order with order each node finished processing.
-        2. Updates the global variable components, associating each node with the source node it was originally called from.
+        2. Updates the global variable components, associating each node with its source node.
         """
         self.explored.add(node)
         try:

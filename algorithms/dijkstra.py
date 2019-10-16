@@ -8,7 +8,7 @@ def dijkstra(g: Mapping[int, List[int]], start: str) -> Mapping[str, int]:
     """
     discovered = {start}
     res = {}
-    h = [(0, start)] # heap h stores (cost, node) from the start node
+    h = [(0, start)]  # heap h stores (cost, node) from the start node
     heap_entries = {start: (0, start)}
 
     while h:

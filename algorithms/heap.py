@@ -1,6 +1,8 @@
 class Heap:
     """
-    This is a heap implementation that uses an array. Since a heap is an as-complete-as-possible binary tree, the parent and children of any given key in the heap can be found by simple arithmetic. For example, let's say we have the following heap:
+    This is a heap implementation that uses an array. Since a heap is an as-complete-as-possible binary tree,
+    the parent and children of any given key in the heap can be found by simple arithmetic.
+    For example, let's say we have the following heap:
              1
             / \
            2   3
@@ -22,7 +24,7 @@ class Heap:
 
     def insert(self, key: int) -> None:
         """
-        insert accepts a key and places it in a position that maintains the integrity of the heap.
+        Accepts a key and places it in a position that maintains the integrity of the heap.
         (ie in a position where the key is greater than its parent.)
         """
         self.heap.append(key)
@@ -31,7 +33,7 @@ class Heap:
 
     def bubble_up(self, key: int, position: int) -> None:
         """
-        bubble_up recursively swaps the inputted child key with it's parent, until it is greater than or equal to its parent.
+        Recursively swaps the input child key with its parent, until it is greater than or equal to its parent.
         """
         parent_position = self.parent_position(position)
         if not parent_position:
@@ -44,7 +46,8 @@ class Heap:
 
     def extract_min(self) -> int:
         """
-        extract_min returns the minimum key from the heap and reorders the remaining keys to maintain the integrity of the heap, so that any given child is less than it's parent.
+        Returns the minimum key from the heap and reorders the remaining keys to maintain the integrity of
+        the heap, so that any given child is less than it's parent.
         """
         res = self.heap[0]
         self.heap[0] = self.heap.pop()
@@ -55,7 +58,8 @@ class Heap:
 
     def bubble_down(self, key: int, position: int) -> None:
         """
-        bubble_down recursively swaps the inputted parent key with it's minimum child, until it is less than or equal to its minimum child.
+        Recursively swaps the inputted parent key with it's minimum child, until it is less than or
+        equal to its minimum child.
         """
         min_child_pos = self.min_child_position(position)
         if not min_child_pos:
