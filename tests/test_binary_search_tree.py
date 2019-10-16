@@ -1,8 +1,6 @@
-import sys
-import os
-sys.path.append(os.path.abspath(os.path.dirname(__file__) + '../..'))
 import unittest
-from binary_search_tree import BinarySearchTree
+
+from algorithms.binary_search_tree import BinarySearchTree
 
 class TestBinarySearchTree(unittest.TestCase):
     def test_insert(self):
