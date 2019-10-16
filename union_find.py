@@ -1,3 +1,6 @@
+from typing import List, Optional
+
+
 class UnionFind:
     """
     The union find data structure maintains partitions in a graph
@@ -9,16 +12,17 @@ class UnionFind:
 
     d <- e
     """
-    def __init__(self, node_labels=[]):
+
+    def __init__(self, node_labels: List[str] = []) -> object:
         self._union_find = {}
         for node_label in node_labels:
             self._union_find[node_label] = Node(node_label, parent_label=node_label)
 
-    def _update_leaders(self, node_labels, leader):
+    def _update_leaders(self, node_labels: List[str], leader: str) -> None:
         for node_label in node_labels:
             self._union_find[node_label].set_parent_label(leader)
 
-    def find(self, node_label):
+    def find(self, node_label: str) -> str:
         """
         Given a node label, return the label associated with the leader node for its partition
 
@@ -40,7 +44,7 @@ class UnionFind:
                 node = parent
                 parent = self._union_find[parent.parent_label]
 
-    def union(self, node_label_a, node_label_b):
+    def union(self, node_label_a: str, node_label_b: str) -> None:
         """
         Given two node labels, fuse the partitions associated with each node together
 
@@ -72,25 +76,25 @@ class UnionFind:
 
 
 class Node:
-    def __init__(self, label, parent_label=None, rank=0):
+    def __init__(self, label: str, parent_label: Optional[str] = None, rank: int = 0) -> None:
         self._label = label
         self._parent_label = parent_label
         self._rank = rank
 
     @property
-    def parent_label(self):
+    def parent_label(self) -> str:
         return self._parent_label
 
     @property
-    def label(self):
+    def label(self) -> str:
         return self._label
 
     @property
-    def rank(self):
+    def rank(self) -> int:
         return self._rank
 
-    def set_parent_label(self, parent_label):
+    def set_parent_label(self, parent_label: str) -> None:
         self._parent_label = parent_label
 
-    def set_rank(self, rank):
+    def set_rank(self, rank: int) -> None:
         self._rank = rank
