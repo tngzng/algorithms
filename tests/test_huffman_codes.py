@@ -1,9 +1,12 @@
-import sys
-import os
-sys.path.append(os.path.abspath(os.path.dirname(__file__) + '../..'))
 import unittest
-from huffman_codes import huffman_codes, HuffmanNode, Queue, _compare_and_pop_smallest, \
-                          _traverse_children_and_assign_codes
+
+from algorithms.huffman_codes import (
+    huffman_codes,
+    HuffmanNode,
+    Queue,
+    _compare_and_pop_smallest,
+    _traverse_children_and_assign_codes
+)
 
 
 class TestHuffmanCodes(unittest.TestCase):

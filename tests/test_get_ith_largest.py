@@ -1,8 +1,6 @@
-import sys
-import os
-sys.path.append(os.path.abspath(os.path.dirname(__file__) + '../..'))
 import unittest
-from get_ith_largest import partition, get_ith_largest
+
+from algorithms.get_ith_largest import partition, get_ith_largest
 
 
 class TestGetIthLargest(unittest.TestCase):

@@ -1,8 +1,7 @@
-import sys
-import os
-sys.path.append(os.path.abspath(os.path.dirname(__file__) + '../..'))
 import unittest
-from merge_sort import merge, merge_sort
+
+
+from algorithms.merge_sort import merge, merge_sort
 
 
 class TestMergeSort(unittest.TestCase):

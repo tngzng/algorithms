@@ -1,8 +1,7 @@
-import sys
-import os
-sys.path.append(os.path.abspath(os.path.dirname(__file__) + '../..'))
 import unittest
-from connected_components import get_connected_components
+
+from algorithms.connected_components import get_connected_components
+
 
 class TestConnectedComponents(unittest.TestCase):
     def test_get_connected_components(self):

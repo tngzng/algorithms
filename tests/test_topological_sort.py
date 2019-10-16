@@ -1,8 +1,6 @@
-import sys
-import os
-sys.path.append(os.path.abspath(os.path.dirname(__file__) + '../..'))
 import unittest
-from topological_sort import topological_sort
+
+from algorithms.topological_sort import topological_sort
 
 
 class TestTopologicalSort(unittest.TestCase):

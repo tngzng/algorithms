@@ -1,8 +1,6 @@
-import sys
-import os
-sys.path.append(os.path.abspath(os.path.dirname(__file__) + '../..'))
 import unittest
-from quicksort import quicksort, partition_subarray
+
+from algorithms.quicksort import quicksort, partition_subarray
 
 
 class TestQuickSort(unittest.TestCase):

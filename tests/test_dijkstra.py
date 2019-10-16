@@ -1,8 +1,6 @@
-import sys
-import os
-sys.path.append(os.path.abspath(os.path.dirname(__file__) + '../..'))
 import unittest
-from dijkstra import dijkstra
+
+from algorithms.dijkstra import dijkstra
 
 
 class TestDijkstra(unittest.TestCase):

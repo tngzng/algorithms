@@ -1,6 +1,6 @@
 from typing import List, Tuple
 
-from union_find import UnionFind
+from algorithms.union_find import UnionFind
 
 
 def kruskals_mst(edge_list: List[Tuple[str, str, int]]):

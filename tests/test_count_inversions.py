@@ -1,8 +1,7 @@
-import sys
-import os
-sys.path.append(os.path.abspath(os.path.dirname(__file__) + '../..'))
 import unittest
-from count_inversions import count_inversions, merge_and_count_inversions
+
+from algorithms.count_inversions import count_inversions, merge_and_count_inversions
+
 
 class TestCountInversions(unittest.TestCase):
     def test_merge_and_count_inversions(self):

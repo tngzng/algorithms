@@ -1,8 +1,7 @@
-import sys
-import os
-sys.path.append(os.path.abspath(os.path.dirname(__file__) + '../..'))
 import unittest
-from union_find import UnionFind, Node
+
+from algorithms.union_find import UnionFind, Node
+
 
 class TestUnionFind(unittest.TestCase):
     def test_find(self):

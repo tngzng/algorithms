@@ -1,8 +1,7 @@
-import sys
-import os
-sys.path.append(os.path.abspath(os.path.dirname(__file__) + '../..'))
 import unittest
-from strongly_connected_components import StronglyConnectedComponents
+
+from algorithms.strongly_connected_components import StronglyConnectedComponents
+
 
 class TestStronglyConnectedComponents(unittest.TestCase):
     def setUp(self):

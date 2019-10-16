@@ -1,8 +1,7 @@
-import sys
-import os
-sys.path.append(os.path.abspath(os.path.dirname(__file__) + '../..'))
 import unittest
-from heap import Heap
+
+from algorithms.heap import Heap
+
 
 class TestHeap(unittest.TestCase):
     def test_insert(self):

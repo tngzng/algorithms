@@ -1,8 +1,7 @@
-import sys
-import os
-sys.path.append(os.path.abspath(os.path.dirname(__file__) + '../..'))
 import unittest
-from kruskals_mst import kruskals_mst
+
+from algorithms.kruskals_mst import kruskals_mst
+
 
 class TestKruskalsMST(unittest.TestCase):
     def test_kruskals_mst(self):
