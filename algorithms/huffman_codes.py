@@ -47,7 +47,7 @@ class Queue:
     def __repr__(self) -> str:
         return self._queue.__repr__()
 
-    
+
 def huffman_codes(char_frequencies: List[Tuple[str, int]]) -> Dict[str, int]:
     """
     given an alphabet where each character has a different frequency of occurring,

@@ -9,7 +9,7 @@ def count_inversions(list: list, inversion_count: int = 0) -> dict:
     :returns: {'list': the ordered list, 'count': total number of inversions}
     """
     if len(list) < 2:
-        return { "list": list, "count": inversion_count }
+        return {"list": list, "count": inversion_count}
     mid_point = len(list) // 2
 
     # recursively count inversions in 1st half of input
@@ -41,7 +41,7 @@ def merge_and_count_inversions(a: list, b: list, inversion_count: int = 0) -> di
             # concat merged w remainder of b if a's finished
             merged = merged + b[j:len(b)]
             j += 1
-            return { "list": merged, "count": inversion_count }
+            return {"list": merged, "count": inversion_count}
 
         try:
             b[j]
@@ -49,7 +49,7 @@ def merge_and_count_inversions(a: list, b: list, inversion_count: int = 0) -> di
             # concat merged w remainder of a if b's finished
             merged = merged + a[i:len(a)]
             i += 1
-            return { "list": merged, "count": inversion_count }
+            return {"list": merged, "count": inversion_count}
 
         if a[i] < b[j]:
             merged.append(a[i])
@@ -63,6 +63,6 @@ def merge_and_count_inversions(a: list, b: list, inversion_count: int = 0) -> di
                 remaining_in_a = len(a) - i
                 inversion_count = inversion_count + remaining_in_a
             except IndexError:
-                pass # a is exhausted
+                pass  # a is exhausted
 
-    return { "list": merged, "count": inversion_count }
+    return {"list": merged, "count": inversion_count}
