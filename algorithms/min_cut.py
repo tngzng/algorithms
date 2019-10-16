@@ -23,6 +23,7 @@ def min_cut(g: Mapping[str, List[str]]) -> int:
 
     return minimum
 
+
 def random_contraction(g: Mapping[str, List[str]]) -> int:
     """
     Return a potential minimum cut from a graph.
@@ -34,9 +35,9 @@ def random_contraction(g: Mapping[str, List[str]]) -> int:
 
     while len(g) > 2:
         rand = random.randrange(0, len(edges))
-        (u,v) = edges.pop(rand)
-        g[u] = g[u] + g[v] # contract u and v
-        g[u] = [adj for adj in g[u] if adj not in [u, v]] # remove self loops from nodes
+        (u, v) = edges.pop(rand)
+        g[u] = g[u] + g[v]  # contract u and v
+        g[u] = [adj for adj in g[u] if adj not in [u, v]]  # remove self loops from nodes
         del g[v]
 
         # update occurrences of v to u
@@ -46,9 +47,10 @@ def random_contraction(g: Mapping[str, List[str]]) -> int:
                 edges[i] = edge
 
         # remove self loops from edges
-        edges = [(x,y) for (x,y) in edges if x != y]
+        edges = [(x, y) for (x, y) in edges if x != y]
 
     return len(edges)
+
 
 def get_edgelist(g: Mapping[str, List[str]]) -> List[Tuple[str, str]]:
     """
@@ -75,14 +77,14 @@ def get_edgelist(g: Mapping[str, List[str]]) -> List[Tuple[str, str]]:
 # 'e'---'f'---'g'---'h'
 
 g = {
-    'a': ['b','e','f'],
-    'b': ['a','e','f','c'],
-    'c': ['b','g','h','d'],
-    'd': ['c','g','h'],
-    'h': ['g','c','d'],
-    'g': ['f','c','d','h'],
-    'f': ['e','a','b','g'],
-    'e': ['a','b','f']
+    'a': ['b', 'e', 'f'],
+    'b': ['a', 'e', 'f', 'c'],
+    'c': ['b', 'g', 'h', 'd'],
+    'd': ['c', 'g', 'h'],
+    'h': ['g', 'c', 'd'],
+    'g': ['f', 'c', 'd', 'h'],
+    'f': ['e', 'a', 'b', 'g'],
+    'e': ['a', 'b', 'f']
 }
 
 print(min_cut(g))
