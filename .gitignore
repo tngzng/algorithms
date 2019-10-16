@@ -3,3 +3,4 @@
 */.cache/*
 venv
 .DS_Store
+.idea
