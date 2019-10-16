@@ -5,7 +5,7 @@ from algorithms.dijkstra import dijkstra
 
 class TestDijkstra(unittest.TestCase):
     def test_insert(self):
-        """
+        r"""
         test the following graph
 
               a
