@@ -7,7 +7,8 @@ current_label = None
 
 def topological_sort(g: Mapping[str, List[str]]) -> Dict[str, int]:
     """
-    Return a linear ordering of a directed graph's vertices such that for every directed edge uv from vertex u to vertex v, u comes before v in the ordering (definition from wikipedia).
+    Return a linear ordering of a directed graph's vertices such that for every directed edge uv from vertex u to
+    vertex v, u comes before v in the ordering (definition from wikipedia).
 
     :param dict g: graph represented as an adjacency list.
     :returns: dict of nodes as keys with values representing their topological ordering.
@@ -18,7 +19,7 @@ def topological_sort(g: Mapping[str, List[str]]) -> Dict[str, int]:
 
     nodes = g.keys()
     explored = set([])
-    current_label = len(g) # count backwards
+    current_label = len(g)  # count backwards
     topological_order = {}
 
     for node in nodes:
@@ -30,7 +31,8 @@ def topological_sort(g: Mapping[str, List[str]]) -> Dict[str, int]:
 
 def dfs(g: Mapping[str, List[str]], node: str):
     """
-    Depth first search of a graph given a starting node that adds leaf or 'sink' nodes to topological_order as they are popped off the recursive stack.
+    Depth first search of a graph given a starting node that adds leaf or 'sink' nodes to topological_order as they
+    are popped off the recursive stack.
 
     :param dict g: graph represented as an adjacency list.
     :param str node: string representing node in graph.
@@ -39,7 +41,7 @@ def dfs(g: Mapping[str, List[str]], node: str):
     global topological_order
     global current_label
     neighboring_nodes = g.get(node, None)
-    if neighboring_nodes == None:
+    if neighboring_nodes is None:
         return
     for neighbor in neighboring_nodes:
         if neighbor not in explored:
