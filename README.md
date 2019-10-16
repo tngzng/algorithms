@@ -3,7 +3,6 @@ Algorithm implementations in python.
 
 ## set up dev env
 ```
-cd algorithms
 python3 -m venv .
 ```
 
@@ -11,5 +10,5 @@ python3 -m venv .
 ```
 source venv/bin/activate
 pip install -r requirements.txt
-cd tests && py.test
+./scripts/test
 ```
