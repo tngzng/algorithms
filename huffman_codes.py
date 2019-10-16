@@ -1,4 +1,54 @@
-def huffman_codes(char_frequencies):
+from typing import List, Tuple, Dict, Any
+
+
+class HuffmanNode:
+    def __init__(self, label: str = '', left_child: 'HuffmanNode' = None,
+                 right_child: 'HuffmanNode' = None, binary_code: str = '') -> None:
+        self.label = label
+        self.left_child = left_child
+        self.right_child = right_child
+        self.binary_code = binary_code
+
+    def update_left_child(self, left_child: 'HuffmanNode') -> None:
+        self.left_child = left_child
+
+    def update_right_child(self, right_child: 'HuffmanNode') -> None:
+        self.right_child = right_child
+
+    def update_code(self, binary_code: str) -> None:
+        self.binary_code = binary_code
+
+    def update_label(self, label: str) -> None:
+        self.label = label
+
+    def __repr__(self) -> str:
+        return self.label
+
+
+class Queue:
+    def __init__(self) -> None:
+        self._queue = []
+
+    def peak(self) -> Any:
+        return self._queue[-1]
+
+    def enqueue(self, el: Any) -> None:
+        self._queue.insert(0, el)
+
+    def dequeue(self) -> Any:
+        return self._queue.pop()
+
+    def __len__(self) -> int:
+        return len(self._queue)
+
+    def __str__(self) -> str:
+        return self._queue.__str__()
+
+    def __repr__(self) -> str:
+        return self._queue.__repr__()
+
+    
+def huffman_codes(char_frequencies: List[Tuple[str, int]]) -> Dict[str, int]:
     """
     given an alphabet where each character has a different frequency of occurring,
     produce a representation in binary for each character that minimizes the memory
@@ -74,7 +124,7 @@ def huffman_codes(char_frequencies):
     return code_dict
 
 
-def _traverse_children_and_assign_codes(parent, code_dict):
+def _traverse_children_and_assign_codes(parent: HuffmanNode, code_dict: Dict[str, int]) -> None:
     """
     for a given `parent` node, traverse its children and add the binary representation of the
     leaf nodes to the provided `code_dict`
@@ -123,7 +173,7 @@ def _traverse_children_and_assign_codes(parent, code_dict):
         _traverse_children_and_assign_codes(parent.right_child, code_dict)
 
 
-def _compare_and_pop_smallest(node_q_1, node_q_2):
+def _compare_and_pop_smallest(node_q_1: Queue, node_q_2: Queue) -> HuffmanNode:
     if not len(node_q_1) and not len(node_q_2):
         return None
 
@@ -138,49 +188,3 @@ def _compare_and_pop_smallest(node_q_1, node_q_2):
         return node_q_1.dequeue()
     else:
         return node_q_2.dequeue()
-
-
-class HuffmanNode:
-    def __init__(self, label='', left_child=None, right_child=None, binary_code=''):
-        self.label = label
-        self.left_child = left_child
-        self.right_child = right_child
-        self.binary_code = binary_code
-
-    def update_left_child(self, left_child):
-        self.left_child = left_child
-
-    def update_right_child(self, right_child):
-        self.right_child = right_child
-
-    def update_code(self, binary_code):
-        self.binary_code = binary_code
-
-    def update_label(self, label):
-        self.label = label
-
-    def __repr__(self):
-        return self.label
-
-
-class Queue:
-    def __init__(self):
-        self._queue = []
-
-    def peak(self):
-        return self._queue[-1]
-
-    def enqueue(self, el):
-        self._queue.insert(0, el)
-
-    def dequeue(self):
-        return self._queue.pop()
-
-    def __len__(self):
-        return len(self._queue)
-
-    def __str__(self):
-        return self._queue.__str__()
-
-    def __repr__(self):
-        return self._queue.__repr__()
