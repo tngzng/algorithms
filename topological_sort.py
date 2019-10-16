@@ -1,10 +1,11 @@
-import random
+from typing import Dict, Mapping, List
+
 explored = None
 topological_order = None
 current_label = None
 
 
-def topological_sort(g):
+def topological_sort(g: Mapping[str, List[str]]) -> Dict[str, int]:
     """
     Return a linear ordering of a directed graph's vertices such that for every directed edge uv from vertex u to vertex v, u comes before v in the ordering (definition from wikipedia).
 
@@ -27,7 +28,7 @@ def topological_sort(g):
     return topological_order
 
 
-def dfs(g, node):
+def dfs(g: Mapping[str, List[str]], node: str):
     """
     Depth first search of a graph given a starting node that adds leaf or 'sink' nodes to topological_order as they are popped off the recursive stack.
 

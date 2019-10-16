@@ -1,15 +1,18 @@
+from typing import Mapping, List
+
+
 class StronglyConnectedComponents:
-    def __init__(self):
+    def __init__(self) -> None:
         self.reset_dfs_vars()
 
-    def reset_dfs_vars(self):
+    def reset_dfs_vars(self) -> None:
         self.finishing_time = 1
         self.finishing_order = []
         self.explored = set([])
         self.source_node = None
         self.components = {}
 
-    def reverse_graph(self, graph):
+    def reverse_graph(self, graph: Mapping[int, List[int]]) -> Mapping[int, List[int]]:
         reversed_graph = {}
         for node in graph:
             edge_list = graph[node]
@@ -21,7 +24,7 @@ class StronglyConnectedComponents:
 
         return reversed_graph
 
-    def strongly_connected_components(self, graph):
+    def strongly_connected_components(self, graph: Mapping[int, List[int]]) -> List[int]:
         """
         Given a directed graph, return an array of its strongly connected components. A strongly connected component is a collection of nodes where each node is reachable from every other node.
 
@@ -43,7 +46,7 @@ class StronglyConnectedComponents:
         self.reset_dfs_vars()
         return res
 
-    def dfs(self, graph, node):
+    def dfs(self, graph: Mapping[int, List[int]], node: int) -> None:
         """
         Depth first search that:
         1. Updates the global variable finishing_order with order each node finished processing.
