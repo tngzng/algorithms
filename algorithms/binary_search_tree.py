@@ -3,9 +3,9 @@ from typing import Optional, Generator, Tuple
 
 class BinarySearchNode:
     def __init__(self, label: int,
-                 parent: Optional['BinarySearchNode']=None,
-                 left_child: Optional['BinarySearchNode']=None,
-                 right_child: Optional['BinarySearchNode']=None) -> None:
+                 parent: Optional['BinarySearchNode'] = None,
+                 left_child: Optional['BinarySearchNode'] = None,
+                 right_child: Optional['BinarySearchNode'] = None) -> None:
         self.label = label
         self.parent = parent
         self.left_child = left_child
@@ -17,7 +17,7 @@ class BinarySearchNode:
 
     def update_parent(self) -> None:
         if not self.parent:
-            return # root node
+            return  # root node
         parent_label = self.parent.label
         if parent_label < self.label:
             self.parent.right_child = self
@@ -33,7 +33,7 @@ class BinarySearchTree:
         if not start_node:
             start_node = self.root
         if not start_node:
-            return None # empty tree
+            return None  # empty tree
 
         last_taversed_node = start_node
         while last_taversed_node.left_child:
@@ -45,7 +45,7 @@ class BinarySearchTree:
         if not start_node:
             start_node = self.root
         if not start_node:
-            return None # empty tree
+            return None  # empty tree
 
         last_taversed_node = start_node
         while last_taversed_node.right_child:
@@ -65,7 +65,7 @@ class BinarySearchTree:
                 return next_node
             next_node = next_node.parent
 
-        return None # input node is the min
+        return None  # input node is the min
 
     def next(self, node: BinarySearchNode) -> Optional[BinarySearchNode]:
         # if node has right subtree, return min from that subtree
@@ -79,7 +79,7 @@ class BinarySearchTree:
                 return next_node
             next_node = next_node.parent
 
-        return None # input node is the max
+        return None  # input node is the max
 
     def traverse_in_order(self) -> Generator[BinarySearchNode, None, None]:
         min_node = self.min()
@@ -99,12 +99,12 @@ class BinarySearchTree:
         else:
             child_node = start_node.left_child
 
-        if child_node == None:
-            return (False, start_node)
+        if child_node is None:
+            return False, start_node
 
         child_key = child_node.label
         if child_key == target_key:
-            return (True, start_node)
+            return True, start_node
 
         return self.search(child_node, target_key)
 
@@ -117,6 +117,6 @@ class BinarySearchTree:
         found, last_traversed_node = res
 
         if found:
-            return None # duplicate keys not supported
+            return None  # duplicate keys not supported
 
         return BinarySearchNode(key, parent=last_traversed_node)
