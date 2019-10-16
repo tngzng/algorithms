@@ -2,22 +2,23 @@ from typing import List, Optional, Tuple
 import random
 
 
-def quicksort(arr: List[int], left_bound: int = 0, right_bound: Optional[int] =None) -> list:
+def quicksort(arr: List[int], left_bound: int = 0, right_bound: Optional[int] = None) -> list:
     """
-    Sorts a list in place by recursively partitioning the list. Each partition orders a smaller subarray and produces new subarrays to partition.
+    Sorts a list in place by recursively partitioning the list. Each partition orders a smaller subarray and produces
+    new subarrays to partition.
 
     :param arr list: An unordered list containing integers.
     :param int left_bound: Index for left bound of subarray.
     :param int right_bound: Index for right bound of subarray.
     :returns: An ordered list.
     """
-    initial_call = right_bound == None
+    initial_call = right_bound is None
     if initial_call:
-        random.shuffle(arr) # prevent worst case scenario
+        random.shuffle(arr)  # prevent worst case scenario
         right_bound = len(arr) - 1
 
     if right_bound - left_bound < 2:
-        return arr # done recursing when the subarray has 1 element
+        return arr  # done recursing when the subarray has 1 element
 
     (lt_subarray_bounds, gt_subarray_bounds) = partition_subarray(arr, left_bound, right_bound)
 
@@ -29,7 +30,8 @@ def quicksort(arr: List[int], left_bound: int = 0, right_bound: Optional[int] =N
 
 def partition_subarray(arr: List[int], left_bound: int, right_bound: int) -> Tuple[Tuple[int, int]]:
     """
-    Partition a subarray into two subarrays, one with values less than a pivot and one with values greater than a pivot. The subbarray is also ordered by swapping elements when out of place in relation to the pivot.
+    Partition a subarray into two subarrays, one with values less than a pivot and one with values greater than a pivot.
+    The subbarray is also ordered by swapping elements when out of place in relation to the pivot.
 
     :param arr list: An unordered list containing integers.
     :param int left_bound: Index for left bound of subarray.
@@ -46,7 +48,7 @@ def partition_subarray(arr: List[int], left_bound: int, right_bound: int) -> Tup
             arr[new_bound] = temp
             new_bound += 1
     # swap pivot and the last of the smaller els
-    temp = arr[left_bound] # pivot location
+    temp = arr[left_bound]  # pivot location
     arr[left_bound] = arr[new_bound - 1]
     arr[new_bound - 1] = temp
 
