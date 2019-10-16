@@ -76,7 +76,7 @@ class TestHuffmanCodes(unittest.TestCase):
             ('f', 6),
         ]
 
-        expected_code_lens= {
+        expected_code_lens = {
             'a': 3,
             'b': 4,
             'c': 2,

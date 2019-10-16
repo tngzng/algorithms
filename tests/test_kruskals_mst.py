@@ -5,7 +5,7 @@ from algorithms.kruskals_mst import kruskals_mst
 
 class TestKruskalsMST(unittest.TestCase):
     def test_kruskals_mst(self):
-        """
+        r"""
         model the graph:
               a
           5  / \  1
