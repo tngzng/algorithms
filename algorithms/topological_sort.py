@@ -1,8 +1,8 @@
-from typing import Dict, Mapping, List
+from typing import Dict, Mapping, List, Set
 
-explored = None
-topological_order = None
-current_label = None
+explored: Set[str] = set([])
+topological_order: Dict[str, int] = {}
+current_label: int = 0
 
 
 def topological_sort(g: Mapping[str, List[str]]) -> Dict[str, int]:
