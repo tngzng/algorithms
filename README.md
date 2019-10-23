@@ -3,7 +3,7 @@ Algorithm implementations in python.
 
 ## set up dev env
 ```
-python3 -m venv .
+python3 -m venv venv
 ```
 
 ## run tests
