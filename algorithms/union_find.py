@@ -1,4 +1,4 @@
-from typing import List, Optional
+from typing import List, Optional, Dict
 
 
 class UnionFind:
@@ -13,8 +13,8 @@ class UnionFind:
     d <- e
     """
 
-    def __init__(self, node_labels: List[str] = []) -> object:
-        self._union_find = {}
+    def __init__(self, node_labels: List[str] = []) -> None:
+        self._union_find: Dict[Optional[str], Node] = {}
         for node_label in node_labels:
             self._union_find[node_label] = Node(node_label, parent_label=node_label)
 
@@ -82,7 +82,7 @@ class Node:
         self._rank = rank
 
     @property
-    def parent_label(self) -> str:
+    def parent_label(self) -> Optional[str]:
         return self._parent_label
 
     @property
