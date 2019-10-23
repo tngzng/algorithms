@@ -3,4 +3,5 @@
 set -e
 
 flake8 . --statistics --count
+
 py.test -v --color=yes tests/
