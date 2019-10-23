@@ -1,4 +1,4 @@
-from typing import Mapping, List
+from typing import Mapping, List, Set, Dict
 
 
 class StronglyConnectedComponents:
@@ -6,14 +6,14 @@ class StronglyConnectedComponents:
         self.reset_dfs_vars()
 
     def reset_dfs_vars(self) -> None:
-        self.finishing_time = 1
-        self.finishing_order = []
-        self.explored = set([])
-        self.source_node = None
-        self.components = {}
+        self.finishing_time: int = -1
+        self.finishing_order: List[int] = []
+        self.explored: Set[int] = set([])
+        self.source_node: int = -1
+        self.components: Dict[int, List[int]] = {}
 
     def reverse_graph(self, graph: Mapping[int, List[int]]) -> Mapping[int, List[int]]:
-        reversed_graph = {}
+        reversed_graph: Dict[int, List[int]] = {}
         for node in graph:
             edge_list = graph[node]
             for adj_node in edge_list:
@@ -24,7 +24,7 @@ class StronglyConnectedComponents:
 
         return reversed_graph
 
-    def strongly_connected_components(self, graph: Mapping[int, List[int]]) -> List[int]:
+    def strongly_connected_components(self, graph: Mapping[int, List[int]]) -> List[List[int]]:
         """
         Given a directed graph, return an array of its strongly connected components.
         A strongly connected component is a collection of nodes where each node is reachable from every other node.
@@ -43,15 +43,15 @@ class StronglyConnectedComponents:
                 self.source_node = node
                 self.dfs(graph, node)
 
-        res = self.components.values()
+        res = list(self.components.values())
         self.reset_dfs_vars()
         return res
 
     def dfs(self, graph: Mapping[int, List[int]], node: int) -> None:
         """
         Depth first search that:
-        1. Updates the global variable finishing_order with order each node finished processing.
-        2. Updates the global variable components, associating each node with its source node.
+        1. Updates the instance variable finishing_order with order each node finished processing.
+        2. Updates the instance variable components, associating each node with its source node.
         """
         self.explored.add(node)
         try:
