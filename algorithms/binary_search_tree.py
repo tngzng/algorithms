@@ -59,7 +59,7 @@ class BinarySearchTree:
             return self.max(start_node=node.left_child)
 
         # traverse parents until a parent with a lower value is reached
-        next_node = node
+        next_node: Optional[BinarySearchNode] = node
         while next_node:
             if next_node.label < node.label:
                 return next_node
@@ -73,7 +73,7 @@ class BinarySearchTree:
             return self.min(start_node=node.right_child)
 
         # traverse parents until a parent with a higher value is reached
-        next_node = node
+        next_node: Optional[BinarySearchNode] = node
         while next_node:
             if next_node.label > node.label:
                 return next_node
@@ -84,7 +84,7 @@ class BinarySearchTree:
     def traverse_in_order(self) -> Generator[BinarySearchNode, None, None]:
         min_node = self.min()
         if min_node:
-            next_node = min_node
+            next_node: Optional[BinarySearchNode] = min_node
             while next_node:
                 yield next_node
                 next_node = self.next(next_node)
