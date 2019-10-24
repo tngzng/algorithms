@@ -23,10 +23,10 @@ def get_ith_largest(arr: list, i: int) -> int:
         new_arr = arr[:new_pivot_location]
         return get_ith_largest(new_arr, i)
 
-    if new_pivot_location + 1 < i:
-        new_arr = arr[new_pivot_location:]
-        new_i = i - new_pivot_location
-        return get_ith_largest(new_arr, new_i)
+    # new_pivot_location + 1 < i:
+    new_arr = arr[new_pivot_location:]
+    new_i = i - new_pivot_location
+    return get_ith_largest(new_arr, new_i)
 
 
 def partition(arr: list) -> Tuple[list, int]:
