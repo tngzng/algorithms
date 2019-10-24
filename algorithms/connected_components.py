@@ -10,7 +10,7 @@ def get_connected_components(g: Mapping[int, List[int]]) -> List[List]:
     :returns: array of arrays, each representing a connected component.
     """
     connected_components = []
-    explored = set([])
+    explored: Set[int] = set([])
     node_count = len(g)
     for i in range(1, node_count + 1):
         if i not in explored:

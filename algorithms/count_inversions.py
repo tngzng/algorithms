@@ -33,7 +33,7 @@ def merge_and_count_inversions(a: list, b: list, inversion_count: int = 0) -> di
     i = 0
     j = 0
     total_len = len(a) + len(b)
-    merged = []
+    merged: list = []
     for k in range(total_len):
         try:
             a[i]

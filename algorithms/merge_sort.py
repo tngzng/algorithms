@@ -1,4 +1,7 @@
-def merge_sort(list: list) -> list:
+from typing import List
+
+
+def merge_sort(list: List[int]) -> List[int]:
     """
     recursively sorts halved lists, merging the results at each level
 
@@ -16,7 +19,7 @@ def merge_sort(list: list) -> list:
     return merge(first_half, second_half)
 
 
-def merge(a: list, b: list) -> list:
+def merge(a: List[int], b: List[int]) -> List[int]:
     """
     steps through indexes in both input lists, appending the smaller val to the output list at each step
 
@@ -27,7 +30,7 @@ def merge(a: list, b: list) -> list:
     i = 0
     j = 0
     total_len = len(a) + len(b)
-    res = []
+    res: List = []
     for k in range(total_len):
         try:
             a[i]

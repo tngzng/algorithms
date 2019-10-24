@@ -28,7 +28,7 @@ def kruskals_mst(edge_list: List[Tuple[str, str, int]]):
     mst = []
     node_tuples = [(tup[0], tup[1]) for tup in edge_list]
     unique_nodes = {tup_el for tup in node_tuples for tup_el in tup}
-    _union_find = UnionFind(unique_nodes)
+    _union_find = UnionFind(list(unique_nodes))
     sorted_edges = sorted(edge_list, key=lambda x: x[2])
 
     for edge in sorted_edges:

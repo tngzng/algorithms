@@ -1,3 +1,6 @@
+from typing import List, Optional
+
+
 class Heap:
     """
     This is a heap implementation that uses an array. Since a heap is an as-complete-as-possible binary tree,
@@ -20,7 +23,7 @@ class Heap:
     2 * 2 + 1 = 5
     """
     def __init__(self) -> None:
-        self.heap = []
+        self.heap: List[int] = []
 
     def insert(self, key: int) -> None:
         """
@@ -79,7 +82,7 @@ class Heap:
     def parent_position(self, position: int) -> int:
         return position // 2
 
-    def min_child_position(self, position: int) -> int:
+    def min_child_position(self, position: int) -> Optional[int]:
         (pos_1, pos_2) = (2 * position, 2 * position + 1)
         try:
             child_1 = self.heap[pos_1 - 1]
