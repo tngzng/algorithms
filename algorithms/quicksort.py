@@ -12,15 +12,14 @@ def quicksort(arr: List[int], left_bound: int = 0, right_bound: Optional[int] = 
     :param int right_bound: Index for right bound of subarray.
     :returns: An ordered list.
     """
-    initial_call = right_bound is None
-    if initial_call:
+    if right_bound is None:
         random.shuffle(arr)  # prevent worst case scenario
         right_bound = len(arr) - 1
 
     if right_bound - left_bound < 2:
         return arr  # done recursing when the subarray has 1 element
 
-    (lt_subarray_bounds, gt_subarray_bounds) = partition_subarray(arr, left_bound, right_bound)
+    lt_subarray_bounds, gt_subarray_bounds = partition_subarray(arr, left_bound, right_bound)
 
     quicksort(arr, lt_subarray_bounds[0], lt_subarray_bounds[1])
     quicksort(arr, gt_subarray_bounds[0], gt_subarray_bounds[1])
@@ -28,7 +27,7 @@ def quicksort(arr: List[int], left_bound: int = 0, right_bound: Optional[int] = 
     return arr
 
 
-def partition_subarray(arr: List[int], left_bound: int, right_bound: int) -> Tuple[Tuple[int, int]]:
+def partition_subarray(arr: List[int], left_bound: int, right_bound: int) -> Tuple[Tuple[int, int], Tuple[int, int]]:
     """
     Partition a subarray into two subarrays, one with values less than a pivot and one with values greater than a pivot.
     The subbarray is also ordered by swapping elements when out of place in relation to the pivot.
