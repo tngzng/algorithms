@@ -1,4 +1,4 @@
-from typing import List, Tuple, Dict, Any
+from typing import List, Tuple, Dict, Any, Optional
 
 
 class HuffmanNode:
@@ -27,7 +27,7 @@ class HuffmanNode:
 
 class Queue:
     def __init__(self) -> None:
-        self._queue = []
+        self._queue: List[int] = []
 
     def peak(self) -> Any:
         return self._queue[-1]
@@ -48,7 +48,7 @@ class Queue:
         return self._queue.__repr__()
 
 
-def huffman_codes(char_frequencies: List[Tuple[str, int]]) -> Dict[str, int]:
+def huffman_codes(char_frequencies: List[Tuple[str, int]]) -> Dict[str, str]:
     """
     given an alphabet where each character has a different frequency of occurring,
     produce a representation in binary for each character that minimizes the memory
@@ -98,11 +98,12 @@ def huffman_codes(char_frequencies: List[Tuple[str, int]]) -> Dict[str, int]:
         left_node_frequency = _compare_and_pop_smallest(subtree_q, node_q)
         right_node_frequency = _compare_and_pop_smallest(subtree_q, node_q)
 
-        left_node = left_node_frequency[0]
-        parent_node.update_left_child(left_node)
-        left_frequency = left_node_frequency[1]
-        combined_frequency = left_frequency
-        parent_label = left_node.label
+        if left_node_frequency:
+            left_node = left_node_frequency[0]
+            parent_node.update_left_child(left_node)
+            left_frequency = left_node_frequency[1]
+            combined_frequency = left_frequency
+            parent_label = left_node.label
 
         if right_node_frequency:
             right_node = right_node_frequency[0]
@@ -119,12 +120,12 @@ def huffman_codes(char_frequencies: List[Tuple[str, int]]) -> Dict[str, int]:
 
         subtree_q.enqueue((parent_node, combined_frequency))
 
-    code_dict = {}
+    code_dict: Dict[str, str] = {}
     _traverse_children_and_assign_codes(parent_node, code_dict)
     return code_dict
 
 
-def _traverse_children_and_assign_codes(parent: HuffmanNode, code_dict: Dict[str, int]) -> None:
+def _traverse_children_and_assign_codes(parent: HuffmanNode, code_dict: Dict[str, str]) -> None:
     """
     for a given `parent` node, traverse its children and add the binary representation of the
     leaf nodes to the provided `code_dict`
@@ -173,7 +174,7 @@ def _traverse_children_and_assign_codes(parent: HuffmanNode, code_dict: Dict[str
         _traverse_children_and_assign_codes(parent.right_child, code_dict)
 
 
-def _compare_and_pop_smallest(node_q_1: Queue, node_q_2: Queue) -> HuffmanNode:
+def _compare_and_pop_smallest(node_q_1: Queue, node_q_2: Queue) -> Optional[Tuple[HuffmanNode, int]]:
     if not len(node_q_1) and not len(node_q_2):
         return None
 
