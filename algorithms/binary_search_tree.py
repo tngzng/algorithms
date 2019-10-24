@@ -27,7 +27,7 @@ class BinarySearchNode:
 
 class BinarySearchTree:
     def __init__(self) -> None:
-        self.root = None
+        self.root: Optional[BinarySearchNode] = None
 
     def min(self, start_node: Optional[BinarySearchNode] = None) -> Optional[BinarySearchNode]:
         if not start_node:
@@ -108,7 +108,7 @@ class BinarySearchTree:
 
         return self.search(child_node, target_key)
 
-    def insert(self, key: int) -> BinarySearchNode:
+    def insert(self, key: int) -> Optional[BinarySearchNode]:
         if not self.root:
             self.root = BinarySearchNode(key, parent=None)
             return self.root
