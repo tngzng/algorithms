@@ -1,10 +1,10 @@
-from typing import Mapping, List, Tuple
+from typing import List, Tuple, Dict, Mapping, Set
 import random
 import math
 import sys
 
 
-def min_cut(g: Mapping[str, List[str]]) -> int:
+def min_cut(g: Dict[str, List[str]]) -> int:
     """
     Return a min cut with probability of failure 1/n.
 
@@ -14,7 +14,7 @@ def min_cut(g: Mapping[str, List[str]]) -> int:
     n = len(g)
     # repeat n choose 2 * ln n times
     runs = int((n * (n - 1) / 2) * math.log(n))
-    minimum = sys.maxint
+    minimum = sys.maxsize
     for i in range(0, runs):
         temp_g = g
         res = random_contraction(temp_g)
@@ -24,14 +24,14 @@ def min_cut(g: Mapping[str, List[str]]) -> int:
     return minimum
 
 
-def random_contraction(g: Mapping[str, List[str]]) -> int:
+def random_contraction(g: Dict[str, List[str]]) -> int:
     """
     Return a potential minimum cut from a graph.
 
     :param dict g: graph we are contracting represented as an adjacency list.
     :returns: int representing a potential min cut.
     """
-    edges = get_edgelist(g)
+    edges = list(get_edgelist(g))
 
     while len(g) > 2:
         rand = random.randrange(0, len(edges))
@@ -52,7 +52,7 @@ def random_contraction(g: Mapping[str, List[str]]) -> int:
     return len(edges)
 
 
-def get_edgelist(g: Mapping[str, List[str]]) -> List[Tuple[str, str]]:
+def get_edgelist(g: Dict[str, List[str]]) -> Set[Tuple[str, ...]]:
     """
     Return a list of edges from a graph represented as an adjacency list.
 
@@ -66,7 +66,7 @@ def get_edgelist(g: Mapping[str, List[str]]) -> List[Tuple[str, str]]:
             sorted_tuple = tuple(sorted((node, adj)))
             edges.add(sorted_tuple)
 
-    return list(edges)
+    return edges
 
 
 # TODO: since min_cut does not succeed all the time, determine how to write unit test
