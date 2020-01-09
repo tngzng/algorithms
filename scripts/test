@@ -14,7 +14,7 @@ mypy --cache-dir=/dev/null \
      .
 
 echo '********** Import Sort Check *******'
-isort -c
+isort -c --skip-glob venv/bin/**
 
 echo '********** Python Unit Tests *******'
 py.test -v --color=yes tests/
