@@ -7,6 +7,7 @@ entrypoints==0.3
 flake8==3.7.8
 greenlet==0.4.15
 idna==2.8
+isort==4.3.21
 mccabe==0.6.1
 mypy==0.740
 mypy-extensions==0.4.3

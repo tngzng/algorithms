@@ -2,6 +2,20 @@
 
 set -e
 
+echo '********** Python Linting **********'
 flake8 . --statistics --count
 
+echo '********** Static Type Check *******'
+mypy --cache-dir=/dev/null \
+     --allow-subclassing-any \
+     --follow-imports=skip \
+     --ignore-missing-imports \
+     --allow-untyped-decorators \
+     .
+
+echo '********** Import Sort Check *******'
+isort -c
+
+echo '********** Python Unit Tests *******'
 py.test -v --color=yes tests/
+

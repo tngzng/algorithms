@@ -136,4 +136,3 @@ class DecisionNode:
 
     def set_classification(self, classification):
         self.classification = classification
-

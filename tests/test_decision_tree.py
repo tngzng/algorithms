@@ -1,6 +1,3 @@
-import sys
-import os
-sys.path.append(os.path.abspath(os.path.dirname(__file__) + '../..'))
 import unittest
 import numpy as np
 
@@ -13,7 +10,8 @@ class TestDecisionTreeClassifier(unittest.TestCase):
         # and a boolean classification of whether or not we decide to play given each feature vector
         # test data taken from:
         # https://www.slideshare.net/marinasantini1/lecture-4-decision-trees-2-entropy-information-gain-gain-ratio-55241087
-        self.feature_names =    ['outlook', 'temp',  'humidity', 'windy']
+        self.feature_names = ['outlook', 'temp',  'humidity', 'windy']
+
         play_or_not = np.array([['sunny',    'hot',  'high',     False,  False],
                                 ['sunny',    'hot',  'high',     True,   False],
                                 ['overcast', 'hot',  'high',     False,  True],
@@ -57,12 +55,12 @@ class TestDecisionTreeClassifier(unittest.TestCase):
         overcast_node = clf.root.children_by_attribute['overcast']
         sunny_node = clf.root.children_by_attribute['sunny']
         assert rainy_node.feature == 'windy'
-        assert overcast_node.classification == True
+        assert overcast_node.classification is True
         assert sunny_node.feature == 'humidity'
-        assert rainy_node.children_by_attribute['False'].classification == True
-        assert rainy_node.children_by_attribute['True'].classification == False
-        assert sunny_node.children_by_attribute['high'].classification == False
-        assert sunny_node.children_by_attribute['normal'].classification == True
+        assert rainy_node.children_by_attribute['False'].classification is True
+        assert rainy_node.children_by_attribute['True'].classification is False
+        assert sunny_node.children_by_attribute['high'].classification is False
+        assert sunny_node.children_by_attribute['normal'].classification is True
 
     def test_predict(self):
         clf = DecisionTreeClassifier()
@@ -86,4 +84,3 @@ class TestDecisionTreeClassifier(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
-
