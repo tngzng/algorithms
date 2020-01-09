@@ -1,6 +1,6 @@
 import unittest
 
-from algorithms.quicksort import quicksort, partition_subarray
+from algorithms.quicksort import partition_subarray, quicksort
 
 
 class TestQuickSort(unittest.TestCase):

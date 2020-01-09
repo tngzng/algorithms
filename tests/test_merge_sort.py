@@ -1,6 +1,5 @@
 import unittest
 
-
 from algorithms.merge_sort import merge, merge_sort
 
 

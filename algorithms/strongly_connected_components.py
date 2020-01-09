@@ -1,4 +1,4 @@
-from typing import Mapping, List, Set, Dict
+from typing import Dict, List, Mapping, Set
 
 
 class StronglyConnectedComponents:

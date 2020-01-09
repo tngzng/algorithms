@@ -1,6 +1,6 @@
 import unittest
 
-from algorithms.get_ith_largest import partition, get_ith_largest
+from algorithms.get_ith_largest import get_ith_largest, partition
 
 
 class TestGetIthLargest(unittest.TestCase):

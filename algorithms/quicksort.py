@@ -1,5 +1,5 @@
-from typing import List, Optional, Tuple
 import random
+from typing import List, Optional, Tuple
 
 
 def quicksort(arr: List[int], left_bound: int = 0, right_bound: Optional[int] = None) -> list:

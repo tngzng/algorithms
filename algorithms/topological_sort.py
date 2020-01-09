@@ -1,4 +1,4 @@
-from typing import Dict, Mapping, List, Set
+from typing import Dict, List, Mapping, Set
 
 explored: Set[str] = set([])
 topological_order: Dict[str, int] = {}

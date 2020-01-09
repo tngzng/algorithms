@@ -1,7 +1,7 @@
-from typing import List, Tuple, Dict, Set
-import random
 import math
+import random
 import sys
+from typing import Dict, List, Set, Tuple
 
 
 def min_cut(g: Dict[str, List[str]]) -> int:

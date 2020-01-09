@@ -1,4 +1,4 @@
-from typing import Optional, Generator, Tuple
+from typing import Generator, Optional, Tuple
 
 
 class BinarySearchNode:

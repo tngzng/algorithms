@@ -1,6 +1,6 @@
 import unittest
 
-from algorithms.union_find import UnionFind, Node
+from algorithms.union_find import Node, UnionFind
 
 
 class TestUnionFind(unittest.TestCase):

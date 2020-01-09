@@ -1,5 +1,5 @@
-from typing import Tuple
 import random
+from typing import Tuple
 
 
 def get_ith_largest(arr: list, i: int) -> int:

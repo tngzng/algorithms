@@ -1,5 +1,5 @@
-from typing import Mapping, List, Tuple
-from heapq import heappush, heappop
+from heapq import heappop, heappush
+from typing import List, Mapping, Tuple
 
 
 def dijkstra(g: Mapping[str, List[Tuple[str, int]]], start: str) -> Mapping[str, int]:

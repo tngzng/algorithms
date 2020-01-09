@@ -1,11 +1,11 @@
 import unittest
 
 from algorithms.huffman_codes import (
-    huffman_codes,
     HuffmanNode,
     Queue,
     _compare_and_pop_smallest,
-    _traverse_children_and_assign_codes
+    _traverse_children_and_assign_codes,
+    huffman_codes
 )
 
 

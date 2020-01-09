@@ -1,5 +1,5 @@
-from typing import Mapping, List, Set
 from collections import deque
+from typing import List, Mapping, Set
 
 
 def get_connected_components(g: Mapping[int, List[int]]) -> List[List]:
